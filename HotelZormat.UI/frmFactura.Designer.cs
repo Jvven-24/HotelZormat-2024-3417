@@ -1,6 +1,6 @@
 ﻿namespace HotelZormat.UI
 {
-    partial class FrmPrincipal
+    partial class frmFactura
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // FrmPrincipal
+            // frmFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "FrmPrincipal";
-            this.Text = "Hotel Zormat — Sistema de Gestión";
+            this.Name = "frmFactura";
+            this.Text = "Factura";
             this.ResumeLayout(false);
 
         }
@@ -44,4 +44,3 @@
         #endregion
     }
 }
-

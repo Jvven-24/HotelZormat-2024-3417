@@ -14,9 +14,10 @@ namespace HotelZormat.UI
         [STAThread]
         static void Main()
         {
+            string matricula = "2024-3417";
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmPrincipal());
+            Application.Run(new frmLogin());
         }
     }
 }
