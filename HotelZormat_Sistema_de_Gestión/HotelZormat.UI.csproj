@@ -80,6 +80,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HotelZormat.Modelo\HotelZormat.Modelo.csproj">
+      <Project>{26d3977a-8061-4be2-bb14-c673878b8abf}</Project>
+      <Name>HotelZormat.Modelo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HotelZormat.Negocio\HotelZormat.Negocio.csproj">
       <Project>{0f1ce2cf-6ddd-4f0f-818c-f177cb80dc55}</Project>
       <Name>HotelZormat.Negocio</Name>

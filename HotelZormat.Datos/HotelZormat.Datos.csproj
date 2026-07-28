@@ -44,5 +44,14 @@
     <Compile Include="Conexion\ConexionBD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositorio\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HotelZormat.Modelo\HotelZormat.Modelo.csproj">
+      <Project>{26d3977a-8061-4be2-bb14-c673878b8abf}</Project>
+      <Name>HotelZormat.Modelo</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

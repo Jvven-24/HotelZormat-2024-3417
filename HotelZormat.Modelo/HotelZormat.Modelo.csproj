@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0F1CE2CF-6DDD-4F0F-818C-F177CB80DC55}</ProjectGuid>
+    <ProjectGuid>{26D3977A-8061-4BE2-BB14-C673878B8ABF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HotelZormat.Negocio</RootNamespace>
-    <AssemblyName>HotelZormat.Negocio</AssemblyName>
+    <RootNamespace>HotelZormat.Modelo</RootNamespace>
+    <AssemblyName>HotelZormat.Modelo</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -42,20 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HotelZormat.Datos\HotelZormat.Datos.csproj">
-      <Project>{77092cf9-c260-4846-ac2b-1159c4bbb8fe}</Project>
-      <Name>HotelZormat.Datos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HotelZormat.Modelo\HotelZormat.Modelo.csproj">
-      <Project>{26d3977a-8061-4be2-bb14-c673878b8abf}</Project>
-      <Name>HotelZormat.Modelo</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Excepciones\" />
-    <Folder Include="Servicios\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
