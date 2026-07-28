@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,10 +45,15 @@
     <Compile Include="Conexion\ConexionBD.cs" />
     <Compile Include="Conexion\ConfiguracionBD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IBitacoraRepository.cs" />
+    <Compile Include="Repository\IEstadiaRepository.cs" />
+    <Compile Include="Repository\IFacturaRepository.cs" />
+    <Compile Include="Repository\IHabitacionRepository.cs" />
+    <Compile Include="Repository\IHuespedRepository.cs" />
+    <Compile Include="Repository\IReservaRepository.cs" />
+    <Compile Include="Repository\IUsuarioRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositorio\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\HotelZormat.Modelo\HotelZormat.Modelo.csproj">
       <Project>{26d3977a-8061-4be2-bb14-c673878b8abf}</Project>
