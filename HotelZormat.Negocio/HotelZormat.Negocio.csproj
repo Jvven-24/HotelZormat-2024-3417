@@ -41,8 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Modelo\Habitacion.cs" />
-    <Compile Include="Modelo\Huesped.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +48,14 @@
       <Project>{77092cf9-c260-4846-ac2b-1159c4bbb8fe}</Project>
       <Name>HotelZormat.Datos</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HotelZormat.Modelo\HotelZormat.Modelo.csproj">
+      <Project>{26d3977a-8061-4be2-bb14-c673878b8abf}</Project>
+      <Name>HotelZormat.Modelo</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Excepciones\" />
+    <Folder Include="Servicios\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
