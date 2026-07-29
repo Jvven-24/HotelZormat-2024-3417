@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelZormat.Negocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,21 @@ namespace HotelZormat.UI
         private void huespedesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+            if (!SesionActual.EsAdministrador)
+            {
+                menuBitacora.Visible = false;
+            }
+
+            lblUsuario.Text = SesionActual.UsuarioLogueado.NombreCompleto + " (" + SesionActual.UsuarioLogueado.Rol + ")";
+        }
+
+        private void menuSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.menuPrincipal = new System.Windows.Forms.MenuStrip();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuDashboard = new System.Windows.Forms.ToolStripMenuItem();
             this.menuHabitaciones = new System.Windows.Forms.ToolStripMenuItem();
             this.menuHuespedes = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +38,7 @@
             this.menuReportes = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBitacora = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSalir = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuPrincipal.SuspendLayout();
@@ -61,11 +61,6 @@
             this.menuPrincipal.Size = new System.Drawing.Size(984, 24);
             this.menuPrincipal.TabIndex = 0;
             this.menuPrincipal.Text = "menuStrip1";
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // menuDashboard
             // 
@@ -117,6 +112,12 @@
             this.menuSalir.Size = new System.Drawing.Size(41, 20);
             this.menuSalir.Text = "Salir";
             this.menuSalir.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            this.menuSalir.Click += new System.EventHandler(this.menuSalir_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // statusStrip1
             // 
@@ -145,6 +146,7 @@
             this.Name = "FrmPrincipal";
             this.Text = "Hotel Zormat — Sistema de Gestión";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.menuPrincipal.ResumeLayout(false);
             this.menuPrincipal.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
