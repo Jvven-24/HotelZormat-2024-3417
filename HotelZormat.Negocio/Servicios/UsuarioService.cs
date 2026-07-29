@@ -14,10 +14,10 @@ namespace HotelZormat.Negocio.Servicios
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IBitacoraRepository _bitacoraRepository;         
 
-        public UsuarioService(IUsuarioRepository usuarioRepository, IBitacoraRepository bitacoraRepository)
+        public UsuarioService()
         {
-            _usuarioRepository = usuarioRepository;
-            _bitacoraRepository = bitacoraRepository;
+            _usuarioRepository = new UsuarioRepository();      
+            _bitacoraRepository = new BitacoraRepository();
         }
 
         public Usuario IniciarSesion(string nombreUsuario, string contrasena)
