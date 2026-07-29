@@ -28,13 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.flpHabitaciones = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnRefrescar = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // flpHabitaciones
+            // 
+            this.flpHabitaciones.AutoScroll = true;
+            this.flpHabitaciones.Location = new System.Drawing.Point(20, 60);
+            this.flpHabitaciones.Name = "flpHabitaciones";
+            this.flpHabitaciones.Size = new System.Drawing.Size(910, 480);
+            this.flpHabitaciones.TabIndex = 0;
+            // 
+            // btnRefrescar
+            // 
+            this.btnRefrescar.Location = new System.Drawing.Point(20, 15);
+            this.btnRefrescar.Name = "btnRefrescar";
+            this.btnRefrescar.Size = new System.Drawing.Size(110, 30);
+            this.btnRefrescar.TabIndex = 1;
+            this.btnRefrescar.Text = "Refrescar";
+            this.btnRefrescar.UseVisualStyleBackColor = true;
             // 
             // frmDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(934, 521);
+            this.Controls.Add(this.btnRefrescar);
+            this.Controls.Add(this.flpHabitaciones);
             this.Name = "frmDashboard";
             this.Text = "Tablero de habitaciones";
             this.ResumeLayout(false);
@@ -42,5 +63,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.FlowLayoutPanel flpHabitaciones;
+        private System.Windows.Forms.Button btnRefrescar;
     }
 }

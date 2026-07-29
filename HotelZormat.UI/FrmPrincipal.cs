@@ -16,5 +16,10 @@ namespace HotelZormat.UI
         {
             InitializeComponent();
         }
+
+        private void huespedesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
