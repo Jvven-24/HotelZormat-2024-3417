@@ -43,5 +43,11 @@ namespace HotelZormat.UI
             frmDashboard dashboard = new frmDashboard();
             dashboard.Show();
         }
+
+        private void menuHabitaciones_Click(object sender, EventArgs e)
+        {
+            frmGestionHabitaciones gestion = new frmGestionHabitaciones();
+            gestion.Show();
+        }
     }
 }

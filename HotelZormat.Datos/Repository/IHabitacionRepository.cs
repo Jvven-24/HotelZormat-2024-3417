@@ -52,32 +52,123 @@ namespace HotelZormat.Datos.Repositorio
 
         public List<Habitacion> ObtenerPorFiltro(int? piso, string estado)
         {
-            throw new NotImplementedException();    
+            List<Habitacion> habitaciones = new List<Habitacion>();
+            using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
+            {
+                string sql = "SELECT Numero, Tipo, Piso, Estado, Capacidad, TarifaBase FROM Habitaciones " +
+                             "WHERE (@piso IS NULL OR Piso = @piso) AND (@estado IS NULL OR Estado = @estado)";
+                SqlCommand cmd = new SqlCommand(sql, conexion);
+                cmd.Parameters.AddWithValue("@piso", (object)piso ?? DBNull.Value);            // 1. null-check manual
+                cmd.Parameters.AddWithValue("@estado", string.IsNullOrEmpty(estado) ? (object)DBNull.Value : estado);
+
+                conexion.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Habitacion h = new Habitacion();
+                    h.Numero = (int)reader["Numero"];
+                    h.Tipo = (string)reader["Tipo"];
+                    h.Piso = (int)reader["Piso"];
+                    h.Estado = (string)reader["Estado"];
+                    h.Capacidad = (int)reader["Capacidad"];
+                    h.TarifaBase = (decimal)reader["TarifaBase"];
+                    habitaciones.Add(h);
+                }
+            }
+            return habitaciones;
         }
 
         public Habitacion BuscarPorNumero(int numero)
         {
-            throw new NotImplementedException();
+            Habitacion h = null;
+            using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
+            {
+                string sql = "SELECT Numero, Tipo, Piso, Estado, Capacidad, TarifaBase FROM Habitaciones WHERE Numero = @numero";
+                SqlCommand cmd = new SqlCommand(sql, conexion);
+                cmd.Parameters.AddWithValue("@numero", numero);
+
+                conexion.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    h = new Habitacion();
+                    h.Numero = (int)reader["Numero"];
+                    h.Tipo = (string)reader["Tipo"];
+                    h.Piso = (int)reader["Piso"];
+                    h.Estado = (string)reader["Estado"];
+                    h.Capacidad = (int)reader["Capacidad"];
+                    h.TarifaBase = (decimal)reader["TarifaBase"];
+                }
+            }
+            return h;
         }
 
         public void Insertar(Habitacion habitacion)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
+            {
+                string sql = "INSERT INTO Habitaciones (Numero, Tipo, Piso, Estado, Capacidad, TarifaBase) " +
+                             "VALUES (@n, @t, @p, @e, @c, @tarifa)";
+                SqlCommand cmd = new SqlCommand(sql, conexion);
+                cmd.Parameters.AddWithValue("@n", habitacion.Numero);
+                cmd.Parameters.AddWithValue("@t", habitacion.Tipo);
+                cmd.Parameters.AddWithValue("@p", habitacion.Piso);
+                cmd.Parameters.AddWithValue("@e", habitacion.Estado);
+                cmd.Parameters.AddWithValue("@c", habitacion.Capacidad);
+                cmd.Parameters.AddWithValue("@tarifa", habitacion.TarifaBase);
+
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void Actualizar(Habitacion habitacion)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
+            {
+                string sql = "UPDATE Habitaciones SET Tipo=@t, Piso=@p, Estado=@e, Capacidad=@c, TarifaBase=@tarifa WHERE Numero=@n";
+                SqlCommand cmd = new SqlCommand(sql, conexion);
+                cmd.Parameters.AddWithValue("@n", habitacion.Numero);
+                cmd.Parameters.AddWithValue("@t", habitacion.Tipo);
+                cmd.Parameters.AddWithValue("@p", habitacion.Piso);          // ← la línea que faltaba
+                cmd.Parameters.AddWithValue("@e", habitacion.Estado);
+                cmd.Parameters.AddWithValue("@c", habitacion.Capacidad);
+                cmd.Parameters.AddWithValue("@tarifa", habitacion.TarifaBase);
+
+                conexion.Open();
+                int filasAfectadas = cmd.ExecuteNonQuery();
+                if (filasAfectadas == 0)
+                {
+                    throw new Exception("No existe la habitación #" + habitacion.Numero + " para actualizar");
+                }
+            }
         }
 
         public void Eliminar(int numero)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
+            {
+                string sql = "DELETE FROM Habitaciones WHERE Numero = @numero";
+                SqlCommand cmd = new SqlCommand(sql, conexion);
+                cmd.Parameters.AddWithValue("@numero", numero);
+
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void CambiarEstado(int numero, string nuevoEstado)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
+            {
+                string sql = "UPDATE Habitaciones SET Estado = @estado WHERE Numero = @numero";
+                SqlCommand cmd = new SqlCommand(sql, conexion);
+                cmd.Parameters.AddWithValue("@estado", nuevoEstado);
+                cmd.Parameters.AddWithValue("@numero", numero);
+
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }

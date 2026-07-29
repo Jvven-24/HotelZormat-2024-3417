@@ -18,7 +18,7 @@ namespace HotelZormat.Negocio.Servicios
             _repo = repo;
         }
 
-        public bool ValidarTipoHabitacion(string tipo)
+        public static bool ValidarTipoHabitacion(string tipo)
         {
             if (string.IsNullOrWhiteSpace(tipo)) return false;
             return tipo == "Sencilla" || tipo == "Doble" || tipo == "Suite";

@@ -74,6 +74,7 @@
             this.menuHabitaciones.Name = "menuHabitaciones";
             this.menuHabitaciones.Size = new System.Drawing.Size(88, 20);
             this.menuHabitaciones.Text = "Habitaciones";
+            this.menuHabitaciones.Click += new System.EventHandler(this.menuHabitaciones_Click);
             // 
             // menuHuespedes
             // 

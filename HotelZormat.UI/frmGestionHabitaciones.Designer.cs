@@ -51,6 +51,7 @@
             this.lblIcono = new System.Windows.Forms.Label();
             this.txtTarifa = new System.Windows.Forms.TextBox();
             this.lblEstado = new System.Windows.Forms.Label();
+            this.btnFiltrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHabitaciones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,6 +100,7 @@
             this.dgvHabitaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvHabitaciones.Size = new System.Drawing.Size(650, 300);
             this.dgvHabitaciones.TabIndex = 4;
+            this.dgvHabitaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHabitaciones_CellContentClick);
             // 
             // btnBuscar
             // 
@@ -108,6 +110,7 @@
             this.btnBuscar.TabIndex = 5;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnGuardar
             // 
@@ -117,6 +120,7 @@
             this.btnGuardar.TabIndex = 6;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnEliminar
             // 
@@ -126,6 +130,7 @@
             this.btnEliminar.TabIndex = 7;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnLimpiar
             // 
@@ -135,6 +140,7 @@
             this.btnLimpiar.TabIndex = 8;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // lblNumero
             // 
@@ -201,6 +207,7 @@
             this.cboTipo.Name = "cboTipo";
             this.cboTipo.Size = new System.Drawing.Size(180, 21);
             this.cboTipo.TabIndex = 17;
+            this.cboTipo.SelectedIndexChanged += new System.EventHandler(this.cboTipo_SelectedIndexChanged);
             // 
             // cboEstado
             // 
@@ -210,6 +217,7 @@
             this.cboEstado.Name = "cboEstado";
             this.cboEstado.Size = new System.Drawing.Size(180, 21);
             this.cboEstado.TabIndex = 18;
+            this.cboEstado.SelectedIndexChanged += new System.EventHandler(this.cboEstado_SelectedIndexChanged);
             // 
             // lblPiso
             // 
@@ -235,9 +243,9 @@
             this.lblIcono.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIcono.Location = new System.Drawing.Point(700, 240);
             this.lblIcono.Name = "lblIcono";
-            this.lblIcono.Size = new System.Drawing.Size(79, 31);
+            this.lblIcono.Size = new System.Drawing.Size(22, 31);
             this.lblIcono.TabIndex = 21;
-            this.lblIcono.Text = "icono";
+            this.lblIcono.Text = ".";
             // 
             // txtTarifa
             // 
@@ -251,15 +259,26 @@
             this.lblEstado.AutoSize = true;
             this.lblEstado.Location = new System.Drawing.Point(780, 248);
             this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(39, 13);
+            this.lblEstado.Size = new System.Drawing.Size(13, 13);
             this.lblEstado.TabIndex = 23;
-            this.lblEstado.Text = "estado";
+            this.lblEstado.Text = "_";
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.Location = new System.Drawing.Point(372, 12);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(90, 25);
+            this.btnFiltrar.TabIndex = 24;
+            this.btnFiltrar.Text = "Filtrar";
+            this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
             // frmGestionHabitaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 421);
+            this.Controls.Add(this.btnFiltrar);
             this.Controls.Add(this.lblEstado);
             this.Controls.Add(this.txtTarifa);
             this.Controls.Add(this.lblIcono);
@@ -285,6 +304,7 @@
             this.Controls.Add(this.lblFiltroPiso);
             this.Name = "frmGestionHabitaciones";
             this.Text = "Gestión de habitaciones";
+            this.Load += new System.EventHandler(this.frmGestionHabitaciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHabitaciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -316,5 +336,6 @@
         private System.Windows.Forms.Label lblIcono;
         private System.Windows.Forms.TextBox txtTarifa;
         private System.Windows.Forms.Label lblEstado;
+        private System.Windows.Forms.Button btnFiltrar;
     }
 }
