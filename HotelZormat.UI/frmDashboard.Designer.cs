@@ -48,6 +48,7 @@
             this.btnRefrescar.TabIndex = 1;
             this.btnRefrescar.Text = "Refrescar";
             this.btnRefrescar.UseVisualStyleBackColor = true;
+            this.btnRefrescar.Click += new System.EventHandler(this.btnRefrescar_Click);
             // 
             // frmDashboard
             // 
@@ -58,6 +59,7 @@
             this.Controls.Add(this.flpHabitaciones);
             this.Name = "frmDashboard";
             this.Text = "Tablero de habitaciones";
+            this.Load += new System.EventHandler(this.frmDashboard_Load);
             this.ResumeLayout(false);
 
         }

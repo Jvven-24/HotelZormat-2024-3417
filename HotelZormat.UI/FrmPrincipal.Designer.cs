@@ -67,6 +67,7 @@
             this.menuDashboard.Name = "menuDashboard";
             this.menuDashboard.Size = new System.Drawing.Size(76, 20);
             this.menuDashboard.Text = "Dashboard";
+            this.menuDashboard.Click += new System.EventHandler(this.menuDashboard_Click);
             // 
             // menuHabitaciones
             // 

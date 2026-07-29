@@ -37,5 +37,11 @@ namespace HotelZormat.UI
         {
             Application.Exit();
         }
+
+        private void menuDashboard_Click(object sender, EventArgs e)
+        {
+            frmDashboard dashboard = new frmDashboard();
+            dashboard.Show();
+        }
     }
 }
