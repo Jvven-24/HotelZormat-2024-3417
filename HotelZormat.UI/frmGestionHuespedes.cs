@@ -53,6 +53,31 @@ namespace HotelZormat.UI
             }
         }
 
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtBuscar.Text))
+            {
+                CargarGrid(_huespedService.ObtenerTodos());
+                return;
+            }
+            CargarGrid(_huespedService.Buscar(txtBuscar.Text));
+        }
+
+        private void dgvHuespedes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            DataGridViewRow fila = dgvHuespedes.Rows[e.RowIndex];
+            _idSeleccionado = Convert.ToInt32(fila.Cells["colId"].Value);
+            txtNombre.Text = fila.Cells["colNombre"].Value.ToString();
+            txtApellido.Text = fila.Cells["colApellido"].Value.ToString();
+            cboTipoDocumento.SelectedItem = fila.Cells["colTipoDoc"].Value.ToString();
+            txtNumeroDocumento.Text = fila.Cells["colNumDoc"].Value.ToString();
+            txtNacionalidad.Text = fila.Cells["colNacionalidad"].Value.ToString();
+            txtTelefono.Text = fila.Cells["colTelefono"].Value?.ToString();
+            txtEmail.Text = fila.Cells["colEmail"].Value?.ToString();
+        }
+
         private void cboTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (cboTipoDocumento.SelectedItem?.ToString())
@@ -70,31 +95,6 @@ namespace HotelZormat.UI
                     lblAyuda.Text = "";
                     break;
             }
-        }
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtBuscar.Text))
-            {
-                CargarGrid(_huespedService.ObtenerTodos());
-                return;
-            }
-            CargarGrid(_huespedService.Buscar(txtBuscar.Text));
-        }
-
-        private void dgvHuespedes_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-
-            DataGridViewRow fila = dgvHuespedes.Rows[e.RowIndex];
-            _idSeleccionado = Convert.ToInt32(fila.Cells["colId"].Value);
-            txtNombre.Text = fila.Cells["colNombre"].Value.ToString();
-            txtApellido.Text = fila.Cells["colApellido"].Value.ToString();
-            cboTipoDocumento.SelectedItem = fila.Cells["colTipoDoc"].Value.ToString();
-            txtNumeroDocumento.Text = fila.Cells["colNumDoc"].Value.ToString();
-            txtNacionalidad.Text = fila.Cells["colNacionalidad"].Value.ToString();
-            txtTelefono.Text = fila.Cells["colTelefono"].Value?.ToString();
-            txtEmail.Text = fila.Cells["colEmail"].Value?.ToString();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -179,6 +179,7 @@ namespace HotelZormat.UI
                 MessageBox.Show("Error inesperado: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -223,5 +224,5 @@ namespace HotelZormat.UI
             MessageBox.Show(texto.ToString(), "Historial de estadías",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-    }
+    }  
 }

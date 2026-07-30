@@ -117,10 +117,25 @@ namespace HotelZormat.UI
             }
         }
 
-        private void dtpCheckIn_ValueChanged(object sender, EventArgs e) { RecalcularNochesYMonto(); }
-        private void dtpCheckOut_ValueChanged(object sender, EventArgs e) { RecalcularNochesYMonto(); }
-        private void cboTemporada_SelectedIndexChanged(object sender, EventArgs e) { RecalcularNochesYMonto(); }
-        private void cboHabitacion_SelectedIndexChanged(object sender, EventArgs e) { RecalcularNochesYMonto(); }
+        private void dtpCheckIn_ValueChanged(object sender, EventArgs e)
+        {
+            RecalcularNochesYMonto();
+        }
+
+        private void dtpCheckOut_ValueChanged(object sender, EventArgs e)
+        {
+            RecalcularNochesYMonto();
+        }
+
+        private void cboTemporada_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RecalcularNochesYMonto();
+        }
+
+        private void cboHabitacion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RecalcularNochesYMonto();
+        }
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
@@ -179,7 +194,7 @@ namespace HotelZormat.UI
             }
         }
 
-        private void dgvReservas_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvReservas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
             _idReservaSeleccionada = Convert.ToInt32(dgvReservas.Rows[e.RowIndex].Cells["colId"].Value);

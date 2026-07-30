@@ -87,6 +87,7 @@
             this.btnBuscar.TabIndex = 3;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // dgvHuespedes
             // 
@@ -97,6 +98,7 @@
             this.dgvHuespedes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvHuespedes.Size = new System.Drawing.Size(650, 300);
             this.dgvHuespedes.TabIndex = 4;
+            this.dgvHuespedes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHuespedes_CellContentClick);
             // 
             // btnGuardar
             // 
@@ -106,6 +108,7 @@
             this.btnGuardar.TabIndex = 5;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnEliminar
             // 
@@ -115,6 +118,7 @@
             this.btnEliminar.TabIndex = 6;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnLimpiar
             // 
@@ -124,6 +128,7 @@
             this.btnLimpiar.TabIndex = 7;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // btnHistorial
             // 
@@ -133,6 +138,7 @@
             this.btnHistorial.TabIndex = 8;
             this.btnHistorial.Text = "Historial";
             this.btnHistorial.UseVisualStyleBackColor = true;
+            this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
             // 
             // txtNombre
             // 
@@ -173,6 +179,7 @@
             this.cboTipoDocumento.Name = "cboTipoDocumento";
             this.cboTipoDocumento.Size = new System.Drawing.Size(200, 21);
             this.cboTipoDocumento.TabIndex = 13;
+            this.cboTipoDocumento.SelectedIndexChanged += new System.EventHandler(this.cboTipoDocumento_SelectedIndexChanged);
             // 
             // lblNumeroDocumento
             // 

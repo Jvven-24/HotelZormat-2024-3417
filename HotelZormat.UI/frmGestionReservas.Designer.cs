@@ -95,6 +95,7 @@
             this.cboHabitacion.Name = "cboHabitacion";
             this.cboHabitacion.Size = new System.Drawing.Size(150, 21);
             this.cboHabitacion.TabIndex = 4;
+            this.cboHabitacion.SelectedIndexChanged += new System.EventHandler(this.cboHabitacion_SelectedIndexChanged);
             // 
             // cboTemporada
             // 
@@ -103,6 +104,7 @@
             this.cboTemporada.Name = "cboTemporada";
             this.cboTemporada.Size = new System.Drawing.Size(110, 21);
             this.cboTemporada.TabIndex = 5;
+            this.cboTemporada.SelectedIndexChanged += new System.EventHandler(this.cboTemporada_SelectedIndexChanged);
             // 
             // lblCheckIn
             // 
@@ -120,6 +122,7 @@
             this.dtpCheckIn.Name = "dtpCheckIn";
             this.dtpCheckIn.Size = new System.Drawing.Size(150, 20);
             this.dtpCheckIn.TabIndex = 7;
+            this.dtpCheckIn.ValueChanged += new System.EventHandler(this.dtpCheckIn_ValueChanged);
             // 
             // dtpCheckOut
             // 
@@ -128,6 +131,7 @@
             this.dtpCheckOut.Name = "dtpCheckOut";
             this.dtpCheckOut.Size = new System.Drawing.Size(150, 20);
             this.dtpCheckOut.TabIndex = 8;
+            this.dtpCheckOut.ValueChanged += new System.EventHandler(this.dtpCheckOut_ValueChanged);
             // 
             // lblCheckOut
             // 
@@ -164,6 +168,7 @@
             this.btnCrear.TabIndex = 12;
             this.btnCrear.Text = "Crear reserva";
             this.btnCrear.UseVisualStyleBackColor = true;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
             // 
             // dgvReservas
             // 
@@ -174,6 +179,7 @@
             this.dgvReservas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvReservas.Size = new System.Drawing.Size(880, 300);
             this.dgvReservas.TabIndex = 13;
+            this.dgvReservas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservas_CellContentClick);
             // 
             // btnProximas
             // 
@@ -183,6 +189,7 @@
             this.btnProximas.TabIndex = 14;
             this.btnProximas.Text = "Próximas 7 días";
             this.btnProximas.UseVisualStyleBackColor = true;
+            this.btnProximas.Click += new System.EventHandler(this.btnProximas_Click);
             // 
             // btnCancelar
             // 
@@ -192,6 +199,7 @@
             this.btnCancelar.TabIndex = 15;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnConfirmar
             // 
@@ -201,6 +209,7 @@
             this.btnConfirmar.TabIndex = 16;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // frmGestionReservas
             // 

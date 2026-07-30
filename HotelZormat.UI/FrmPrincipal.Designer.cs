@@ -88,6 +88,7 @@
             this.menuReservas.Name = "menuReservas";
             this.menuReservas.Size = new System.Drawing.Size(64, 20);
             this.menuReservas.Text = "Reservas";
+            this.menuReservas.Click += new System.EventHandler(this.menuReservas_Click);
             // 
             // menuCheckInOut
             // 

@@ -20,7 +20,8 @@ namespace HotelZormat.UI
 
         private void huespedesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmGestionHuespedes gestion = new frmGestionHuespedes();
+            gestion.Show();
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
@@ -47,6 +48,12 @@ namespace HotelZormat.UI
         private void menuHabitaciones_Click(object sender, EventArgs e)
         {
             frmGestionHabitaciones gestion = new frmGestionHabitaciones();
+            gestion.Show();
+        }
+
+        private void menuReservas_Click(object sender, EventArgs e)
+        {
+            frmGestionReservas gestion = new frmGestionReservas();
             gestion.Show();
         }
     }
