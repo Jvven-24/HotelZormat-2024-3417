@@ -12,10 +12,12 @@ namespace HotelZormat.Negocio.Servicios
     public class ReservaService
     {
         private readonly IReservaRepository _repo;
+        private readonly IHabitacionRepository _habitacionRepo;
 
-        public ReservaService(IReservaRepository repo)
+        public ReservaService()
         {
-            _repo = repo;
+            _repo = new ReservaRepository();
+            _habitacionRepo = new HabitacionRepository();
         }
 
         public static bool ValidarTipoHabitacion(string tipo)
