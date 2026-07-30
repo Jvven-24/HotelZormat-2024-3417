@@ -13,6 +13,7 @@ namespace HotelZormat.Datos.Repositorio
     public interface IUsuarioRepository
     {
         Usuario BuscarPorNombreUsuario(string nombreUsuario);
+        Usuario BuscarPorId(int id);
     }
     public class UsuarioRepository : IUsuarioRepository
     {
@@ -25,6 +26,31 @@ namespace HotelZormat.Datos.Repositorio
                              "FROM Usuarios WHERE NombreUsuario = @usuario AND Activo = 1";
                 SqlCommand cmd = new SqlCommand(sql, conexion);
                 cmd.Parameters.AddWithValue("@usuario", nombreUsuario);
+
+                conexion.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    usuario = new Usuario();
+                    usuario.Id = (int)reader["Id"];
+                    usuario.NombreUsuario = (string)reader["NombreUsuario"];
+                    usuario.Contrasena = (string)reader["Contrasena"];
+                    usuario.NombreCompleto = (string)reader["NombreCompleto"];
+                    usuario.Rol = (string)reader["Rol"];
+                    usuario.Activo = (bool)reader["Activo"];
+                }
+            }
+            return usuario;
+        }
+        public Usuario BuscarPorId(int id)
+        {
+            Usuario usuario = null;
+            using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
+            {
+                string sql = "SELECT Id, NombreUsuario, Contrasena, NombreCompleto, Rol, Activo " +
+                             "FROM Usuarios WHERE Id = @id";
+                SqlCommand cmd = new SqlCommand(sql, conexion);
+                cmd.Parameters.AddWithValue("@id", id);
 
                 conexion.Open();
                 SqlDataReader reader = cmd.ExecuteReader();

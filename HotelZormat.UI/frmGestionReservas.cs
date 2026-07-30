@@ -35,22 +35,34 @@ namespace HotelZormat.UI
 
         private void frmGestionReservas_Load(object sender, EventArgs e)
         {
-            dgvReservas.Columns.Add("colId", "Id");
-            dgvReservas.Columns.Add("colHuesped", "Huésped");
-            dgvReservas.Columns.Add("colHabitacion", "Habitación");
-            dgvReservas.Columns.Add("colCheckIn", "Check-in");
-            dgvReservas.Columns.Add("colCheckOut", "Check-out");
-            dgvReservas.Columns.Add("colTemporada", "Temporada");
-            dgvReservas.Columns.Add("colEstado", "Estado");
-            dgvReservas.Columns.Add("colMonto", "Monto");
-
-            List<string> temporadas = new List<string> { "Alta", "Media", "Baja" };
-            foreach (string temporada in temporadas)
+            try
             {
-                cboTemporada.Items.Add(temporada);
-            }
+                dgvReservas.Columns.Add("colId", "Id");
+                dgvReservas.Columns.Add("colHuesped", "Huésped");
+                dgvReservas.Columns.Add("colHabitacion", "Habitación");
+                dgvReservas.Columns.Add("colCheckIn", "Check-in");
+                dgvReservas.Columns.Add("colCheckOut", "Check-out");
+                dgvReservas.Columns.Add("colTemporada", "Temporada");
+                dgvReservas.Columns.Add("colEstado", "Estado");
+                dgvReservas.Columns.Add("colMonto", "Monto");
 
-            CargarCombosYGrid();
+                List<string> temporadas = new List<string> { "Alta", "Media", "Baja" };
+                foreach (string temporada in temporadas)
+                {
+                    cboTemporada.Items.Add(temporada);
+                }
+
+                CargarCombosYGrid();
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
+                    "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
         private void CargarCombosYGrid()

@@ -133,6 +133,7 @@
             this.btnCerrar.TabIndex = 9;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // frmFactura
             // 
@@ -151,6 +152,7 @@
             this.Controls.Add(this.lblHabitacion);
             this.Name = "frmFactura";
             this.Text = "Factura";
+            this.Load += new System.EventHandler(this.frmFactura_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

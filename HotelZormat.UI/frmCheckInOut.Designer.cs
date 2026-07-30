@@ -52,8 +52,10 @@
             this.dgvEstadiasActivas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEstadiasActivas.Location = new System.Drawing.Point(520, 62);
             this.dgvEstadiasActivas.Name = "dgvEstadiasActivas";
+            this.dgvEstadiasActivas.ReadOnly = true;
             this.dgvEstadiasActivas.Size = new System.Drawing.Size(460, 320);
             this.dgvEstadiasActivas.TabIndex = 1;
+            this.dgvEstadiasActivas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEstadiasActivas_CellContentClick);
             // 
             // dgvReservasConfirmadas
             // 
@@ -63,6 +65,7 @@
             this.dgvReservasConfirmadas.ReadOnly = true;
             this.dgvReservasConfirmadas.Size = new System.Drawing.Size(460, 320);
             this.dgvReservasConfirmadas.TabIndex = 2;
+            this.dgvReservasConfirmadas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservasConfirmadas_CellContentClick);
             // 
             // btnCheckOut
             // 
@@ -72,6 +75,7 @@
             this.btnCheckOut.TabIndex = 3;
             this.btnCheckOut.Text = "Registrar Check-out";
             this.btnCheckOut.UseVisualStyleBackColor = true;
+            this.btnCheckOut.Click += new System.EventHandler(this.btnCheckOut_Click);
             // 
             // btnCheckIn
             // 
@@ -81,6 +85,7 @@
             this.btnCheckIn.TabIndex = 4;
             this.btnCheckIn.Text = "Registrar Check-in";
             this.btnCheckIn.UseVisualStyleBackColor = true;
+            this.btnCheckIn.Click += new System.EventHandler(this.btnCheckIn_Click);
             // 
             // frmCheckInOut
             // 
@@ -94,6 +99,7 @@
             this.Controls.Add(this.lblInfo);
             this.Name = "frmCheckInOut";
             this.Text = "Check-in / Check-out";
+            this.Load += new System.EventHandler(this.frmCheckInOut_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstadiasActivas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservasConfirmadas)).EndInit();
             this.ResumeLayout(false);

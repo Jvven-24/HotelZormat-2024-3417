@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -40,23 +41,35 @@ namespace HotelZormat.UI
 
         public void CargarTablero()
         {
-            flpHabitaciones.Controls.Clear();                          
-
-            foreach (Habitacion h in _habitacionService.ObtenerTodas())  
+            try
             {
-                Panel tarjeta = new Panel();
-                tarjeta.Size = new Size(92, 62);
-                tarjeta.BorderStyle = BorderStyle.FixedSingle;
-                tarjeta.BackColor = ObtenerColorPorEstado(h.Estado);
+                flpHabitaciones.Controls.Clear();
 
-                Label lblInfo = new Label();
-                lblInfo.Text = h.Numero + "\n" + h.Tipo + "\n" + h.Estado;
-                lblInfo.Dock = DockStyle.Fill;
-                lblInfo.TextAlign = ContentAlignment.MiddleCenter;
-                lblInfo.ForeColor = Color.White;
+                foreach (Habitacion h in _habitacionService.ObtenerTodas())
+                {
+                    Panel tarjeta = new Panel();
+                    tarjeta.Size = new Size(92, 62);
+                    tarjeta.BorderStyle = BorderStyle.FixedSingle;
+                    tarjeta.BackColor = ObtenerColorPorEstado(h.Estado);
 
-                tarjeta.Controls.Add(lblInfo);
-                flpHabitaciones.Controls.Add(tarjeta);                
+                    Label lblInfo = new Label();
+                    lblInfo.Text = h.Numero + "\n" + h.Tipo + "\n" + h.Estado;
+                    lblInfo.Dock = DockStyle.Fill;
+                    lblInfo.TextAlign = ContentAlignment.MiddleCenter;
+                    lblInfo.ForeColor = Color.White;
+
+                    tarjeta.Controls.Add(tarjeta);
+                    flpHabitaciones.Controls.Add(tarjeta);
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
+                    "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

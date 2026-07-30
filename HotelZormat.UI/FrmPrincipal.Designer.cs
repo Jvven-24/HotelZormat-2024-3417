@@ -95,18 +95,21 @@
             this.menuCheckInOut.Name = "menuCheckInOut";
             this.menuCheckInOut.Size = new System.Drawing.Size(93, 20);
             this.menuCheckInOut.Text = "Check- in/out";
+            this.menuCheckInOut.Click += new System.EventHandler(this.menuCheckInOut_Click);
             // 
             // menuReportes
             // 
             this.menuReportes.Name = "menuReportes";
             this.menuReportes.Size = new System.Drawing.Size(65, 20);
             this.menuReportes.Text = "Reportes";
+            this.menuReportes.Click += new System.EventHandler(this.menuReportes_Click);
             // 
             // menuBitacora
             // 
             this.menuBitacora.Name = "menuBitacora";
             this.menuBitacora.Size = new System.Drawing.Size(62, 20);
             this.menuBitacora.Text = "Bitacora";
+            this.menuBitacora.Click += new System.EventHandler(this.menuBitacora_Click);
             // 
             // menuSalir
             // 

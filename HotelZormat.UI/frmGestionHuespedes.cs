@@ -26,22 +26,34 @@ namespace HotelZormat.UI
 
         private void frmGestionHuespedes_Load(object sender, EventArgs e)
         {
-            dgvHuespedes.Columns.Add("colId", "Id");
-            dgvHuespedes.Columns.Add("colNombre", "Nombre");
-            dgvHuespedes.Columns.Add("colApellido", "Apellido");
-            dgvHuespedes.Columns.Add("colTipoDoc", "Tipo Doc.");
-            dgvHuespedes.Columns.Add("colNumDoc", "Número Doc.");
-            dgvHuespedes.Columns.Add("colNacionalidad", "Nacionalidad");
-            dgvHuespedes.Columns.Add("colTelefono", "Teléfono");
-            dgvHuespedes.Columns.Add("colEmail", "Email");
-
-            List<string> tiposDocumento = new List<string> { "Cedula", "Pasaporte" };
-            foreach (string tipo in tiposDocumento)
+            try
             {
-                cboTipoDocumento.Items.Add(tipo);
-            }
+                dgvHuespedes.Columns.Add("colId", "Id");
+                dgvHuespedes.Columns.Add("colNombre", "Nombre");
+                dgvHuespedes.Columns.Add("colApellido", "Apellido");
+                dgvHuespedes.Columns.Add("colTipoDoc", "Tipo Doc.");
+                dgvHuespedes.Columns.Add("colNumDoc", "Número Doc.");
+                dgvHuespedes.Columns.Add("colNacionalidad", "Nacionalidad");
+                dgvHuespedes.Columns.Add("colTelefono", "Teléfono");
+                dgvHuespedes.Columns.Add("colEmail", "Email");
 
-            CargarGrid(_huespedService.ObtenerTodos());
+                List<string> tiposDocumento = new List<string> { "Cedula", "Pasaporte" };
+                foreach (string tipo in tiposDocumento)
+                {
+                    cboTipoDocumento.Items.Add(tipo);
+                }
+
+                CargarGrid(_huespedService.ObtenerTodos());
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
+                    "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
         private void CargarGrid(List<Huesped> lista)

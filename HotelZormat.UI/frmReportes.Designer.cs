@@ -105,6 +105,7 @@
             this.btnConsultar.TabIndex = 2;
             this.btnConsultar.Text = "Consultar";
             this.btnConsultar.UseVisualStyleBackColor = true;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // lblCantidadFacturas
             // 
@@ -151,6 +152,7 @@
             this.Controls.Add(this.tabReportes);
             this.Name = "frmReportes";
             this.Text = "Reportes";
+            this.Load += new System.EventHandler(this.frmReportes_Load);
             this.tabReportes.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

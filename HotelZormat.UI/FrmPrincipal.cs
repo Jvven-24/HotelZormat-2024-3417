@@ -56,5 +56,23 @@ namespace HotelZormat.UI
             frmGestionReservas gestion = new frmGestionReservas();
             gestion.Show();
         }
+
+        private void menuCheckInOut_Click(object sender, EventArgs e)
+        {
+            frmCheckInOut gestion = new frmCheckInOut();
+            gestion.Show();
+        }
+
+        private void menuReportes_Click(object sender, EventArgs e)
+        {
+            frmReportes reportes = new frmReportes();
+            reportes.Show();
+        }
+
+        private void menuBitacora_Click(object sender, EventArgs e)
+        {
+            frmBitacora bitacora = new frmBitacora();
+            bitacora.Show();
+        }
     }
 }

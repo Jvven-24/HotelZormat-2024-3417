@@ -16,7 +16,9 @@ namespace HotelZormat.Negocio.Servicios
         private readonly IReservaRepository _reservaRepo;
         private readonly IHabitacionRepository _habitacionRepo;
         private readonly IBitacoraRepository _bitacoraRepo;
-       
+        private readonly IFacturaRepository _facturaRepo;
+        private readonly ReservaService _reservaService;
+
 
         public EstadiaService()
         {
@@ -24,6 +26,8 @@ namespace HotelZormat.Negocio.Servicios
             _reservaRepo = new ReservaRepository();
             _habitacionRepo = new HabitacionRepository();
             _bitacoraRepo = new BitacoraRepository();
+            _facturaRepo = new FacturaRepository();
+            _reservaService = new ReservaService();
         }
         public List<Estadia> ObtenerHistorialPorHuesped(int huespedId)
         {
@@ -59,6 +63,63 @@ namespace HotelZormat.Negocio.Servicios
 
             int usuarioId = SesionActual.UsuarioLogueado.Id;
             _bitacoraRepo.Registrar(usuarioId, "CheckIn", "Reserva #" + reservaId + " hab. " + reserva.HabitacionNumero);
+        }
+
+        public List<Estadia> ObtenerActivas()
+        {
+            return _repo.ObtenerActivasDelDia();
+        }
+
+        public Estadia BuscarPorId(int id)
+        {
+            return _repo.BuscarPorId(id);
+        }
+
+        public Factura HacerCheckOut(int estadiaId)
+        {
+            Estadia estadia = _repo.BuscarPorId(estadiaId);
+            if (estadia == null || estadia.Estado != "Activa")
+            {
+                throw new InvalidOperationException("La estadía #" + estadiaId + " no está Activa");
+            }
+
+            Reserva reserva = _reservaRepo.BuscarPorId(estadia.ReservaId);
+            if (reserva == null)
+            {
+                throw new ArgumentException("No existe la reserva asociada a la estadía #" + estadiaId);
+            }
+
+            Habitacion hab = _habitacionRepo.BuscarPorNumero(reserva.HabitacionNumero);
+            if (hab == null)
+            {
+                throw new ArgumentException("No existe la habitación " + reserva.HabitacionNumero);
+            }
+
+            int noches = Math.Max(1, _reservaService.CalcularNoches(estadia.FechaCheckInReal, DateTime.Now));
+            decimal tarifaNoche = _reservaService.CalcularTarifaConTemporada(hab.TarifaBase, reserva.Temporada);
+            decimal subtotal = noches * tarifaNoche;
+            decimal itbis = subtotal * 0.18m;
+            decimal propina = subtotal * 0.10m;
+            decimal total = subtotal + itbis + propina;
+
+            Factura factura = new Factura();
+            factura.NCF = _facturaRepo.ObtenerSiguienteNCF();
+            factura.EstadiaId = estadiaId;
+            factura.Subtotal = subtotal;
+            factura.Itbis = itbis;
+            factura.Propina = propina;
+            factura.Total = total;
+            factura.FechaEmision = DateTime.Now;
+            _facturaRepo.Insertar(factura);
+
+            _repo.Cerrar(estadiaId, DateTime.Now);
+            _habitacionRepo.CambiarEstado(reserva.HabitacionNumero, "Limpieza");
+
+            int usuarioId = SesionActual.UsuarioLogueado.Id;
+            _bitacoraRepo.Registrar(usuarioId, "CheckOut", "Estadía #" + estadiaId + " hab. " + reserva.HabitacionNumero);
+            _bitacoraRepo.Registrar(usuarioId, "Facturacion", "Factura " + factura.NCF + " por " + total.ToString("N2"));
+
+            return factura;
         }
     }
 }

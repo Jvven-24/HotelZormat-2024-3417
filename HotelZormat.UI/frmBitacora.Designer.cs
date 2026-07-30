@@ -53,6 +53,7 @@
             this.btnVerTodas.TabIndex = 1;
             this.btnVerTodas.Text = "Ver Todas";
             this.btnVerTodas.UseVisualStyleBackColor = true;
+            this.btnVerTodas.Click += new System.EventHandler(this.btnVerTodas_Click);
             // 
             // btnFiltrar
             // 
@@ -62,6 +63,7 @@
             this.btnFiltrar.TabIndex = 2;
             this.btnFiltrar.Text = "Filtrar";
             this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
             // dgvBitacora
             // 
@@ -83,6 +85,7 @@
             this.Controls.Add(this.cboFiltroAccion);
             this.Name = "frmBitacora";
             this.Text = "Bitácora (solo Admin)";
+            this.Load += new System.EventHandler(this.frmBitacora_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBitacora)).EndInit();
             this.ResumeLayout(false);
 

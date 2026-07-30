@@ -43,31 +43,43 @@ namespace HotelZormat.UI
 
         private void frmGestionHabitaciones_Load(object sender, EventArgs e)
         {
-            dgvHabitaciones.Columns.Add("colNumero", "Número");
-            dgvHabitaciones.Columns.Add("colTipo", "Tipo");
-            dgvHabitaciones.Columns.Add("colPiso", "Piso");
-            dgvHabitaciones.Columns.Add("colEstado", "Estado");
-            dgvHabitaciones.Columns.Add("colCapacidad", "Capacidad");
-            dgvHabitaciones.Columns.Add("colTarifa", "Tarifa");
-
-            List<string> tipos = new List<string> { "Sencilla", "Doble", "Suite" };
-            foreach (string tipo in tipos)
+            try
             {
-                cboTipo.Items.Add(tipo);
-            }
+                dgvHabitaciones.Columns.Add("colNumero", "Número");
+                dgvHabitaciones.Columns.Add("colTipo", "Tipo");
+                dgvHabitaciones.Columns.Add("colPiso", "Piso");
+                dgvHabitaciones.Columns.Add("colEstado", "Estado");
+                dgvHabitaciones.Columns.Add("colCapacidad", "Capacidad");
+                dgvHabitaciones.Columns.Add("colTarifa", "Tarifa");
 
-            List<string> estados = new List<string> { "Disponible", "Ocupada", "Reservada", "Limpieza" };
-            foreach (string estado in estados)
+                List<string> tipos = new List<string> { "Sencilla", "Doble", "Suite" };
+                foreach (string tipo in tipos)
+                {
+                    cboTipo.Items.Add(tipo);
+                }
+
+                List<string> estados = new List<string> { "Disponible", "Ocupada", "Reservada", "Limpieza" };
+                foreach (string estado in estados)
+                {
+                    cboEstado.Items.Add(estado);
+                    cboFiltroEstado.Items.Add(estado);
+                }
+                cboFiltroEstado.Items.Insert(0, "Todos");
+                cboFiltroEstado.SelectedIndex = 0;
+
+                RecargarFiltroPiso();
+
+                CargarGrid(_habitacionService.ObtenerTodas());
+            }
+            catch (SqlException)
             {
-                cboEstado.Items.Add(estado);
-                cboFiltroEstado.Items.Add(estado);
+                MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
+                    "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            cboFiltroEstado.Items.Insert(0, "Todos");
-            cboFiltroEstado.SelectedIndex = 0;
-
-            RecargarFiltroPiso();                         
-
-            CargarGrid(_habitacionService.ObtenerTodas());
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void CargarGrid(List<Habitacion> lista)
