@@ -46,14 +46,98 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmBitacora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBitacora.Designer.cs">
+      <DependentUpon>frmBitacora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCheckInOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCheckInOut.Designer.cs">
+      <DependentUpon>frmCheckInOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDashboard.Designer.cs">
+      <DependentUpon>frmDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFactura.Designer.cs">
+      <DependentUpon>frmFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGestionHabitaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGestionHabitaciones.Designer.cs">
+      <DependentUpon>frmGestionHabitaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGestionHuespedes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGestionHuespedes.Designer.cs">
+      <DependentUpon>frmGestionHuespedes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGestionReservas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGestionReservas.Designer.cs">
+      <DependentUpon>frmGestionReservas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmPrincipal.Designer.cs">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportes.Designer.cs">
+      <DependentUpon>frmReportes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmBitacora.resx">
+      <DependentUpon>frmBitacora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCheckInOut.resx">
+      <DependentUpon>frmCheckInOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDashboard.resx">
+      <DependentUpon>frmDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFactura.resx">
+      <DependentUpon>frmFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGestionHabitaciones.resx">
+      <DependentUpon>frmGestionHabitaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGestionHuespedes.resx">
+      <DependentUpon>frmGestionHuespedes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGestionReservas.resx">
+      <DependentUpon>frmGestionReservas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPrincipal.resx">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportes.resx">
+      <DependentUpon>frmReportes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

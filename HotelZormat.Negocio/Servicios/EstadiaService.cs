@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HotelZormat.Datos.Repositorio;
+using HotelZormat.Modelo;
 
 namespace HotelZormat.Negocio.Servicios
 {
@@ -12,9 +13,13 @@ namespace HotelZormat.Negocio.Servicios
     {
         private readonly IEstadiaRepository _repo;
 
-        public EstadiaService(IEstadiaRepository repo)
+        public EstadiaService()
         {
-            _repo = repo;
+            _repo = new EstadiaRepository();
+        }
+        public List<Estadia> ObtenerHistorialPorHuesped(int huespedId)
+        {
+            return _repo.ObtenerHistorialPorHuesped(huespedId);
         }
     }
 }
