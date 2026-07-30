@@ -13,7 +13,7 @@ namespace HotelZormat.Negocio.Servicios
     {
         private readonly IHuespedRepository _repo;
 
-        public HuespedService(IHuespedRepository repo)
+        public HuespedService()
         {
             _repo = new HuespedRepository();
         }

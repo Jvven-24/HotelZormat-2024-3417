@@ -1,11 +1,12 @@
 ﻿// Cedula : 402-1937000-0
+using HotelZormat.Datos.Repositorio;
+using HotelZormat.Modelo;
+using HotelZormat.Negocio.Excepciones;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HotelZormat.Datos.Repositorio;
-using HotelZormat.Modelo;
 
 namespace HotelZormat.Negocio.Servicios
 {
@@ -136,6 +137,91 @@ namespace HotelZormat.Negocio.Servicios
             }
 
             return errores;
+        }
+        public decimal CalcularTarifaConTemporada(decimal tarifaBase, string temporada)
+        {
+            decimal descuento;
+            switch (temporada)
+            {
+                case "Alta": descuento = 0m; break;
+                case "Media": descuento = 0.10m; break;
+                case "Baja": descuento = 0.20m; break;
+                default: throw new ArgumentException("Temporada desconocida: " + temporada);
+            }
+            return tarifaBase * (1 - descuento);
+        }
+
+        public int CalcularNoches(DateTime checkIn, DateTime checkOut)
+        {
+            if (checkOut <= checkIn)
+            {
+                throw new ArgumentException("La fecha de salida debe ser posterior a la de entrada");
+            }
+            return (checkOut.Date - checkIn.Date).Days;
+        }
+
+        public List<Reserva> ObtenerTodas()
+        {
+            return _repo.ObtenerTodas();
+        }
+
+        public List<Reserva> ObtenerProximas(int dias)
+        {
+            return _repo.ObtenerProximas(dias);
+        }
+
+        public void CrearReserva(Reserva r)
+        {
+            if (r.FechaCheckIn.Date < DateTime.Today)
+            {
+                throw new ArgumentException("La fecha de entrada no puede ser en el pasado");
+            }
+
+            Habitacion hab = _habitacionRepo.BuscarPorNumero(r.HabitacionNumero);
+            if (hab == null)
+            {
+                throw new ArgumentException("La habitación " + r.HabitacionNumero + " no existe");
+            }
+            if (hab.Estado == "Ocupada" || hab.Estado == "Reservada")
+            {
+                throw new HabitacionOcupadaException(hab.Numero,
+                    "La habitación " + hab.Numero + " no está disponible para reservar");
+            }
+
+            r.TotalNoches = CalcularNoches(r.FechaCheckIn, r.FechaCheckOut);
+            r.MontoEstimado = r.TotalNoches * CalcularTarifaConTemporada(hab.TarifaBase, r.Temporada);
+            r.Estado = "Pendiente";
+
+            _repo.Insertar(r);
+        }
+
+        public void ConfirmarReserva(int reservaId)
+        {
+            Reserva r = _repo.BuscarPorId(reservaId);
+            if (r == null)
+            {
+                throw new ArgumentException("No existe la reserva #" + reservaId);
+            }
+
+            _repo.CambiarEstado(reservaId, "Confirmada");
+            _habitacionRepo.CambiarEstado(r.HabitacionNumero, "Reservada");
+        }
+
+        public void CancelarReserva(int reservaId)
+        {
+            Reserva r = _repo.BuscarPorId(reservaId);
+            if (r == null)
+            {
+                throw new ArgumentException("No existe la reserva #" + reservaId);
+            }
+
+            _repo.CambiarEstado(reservaId, "Cancelada");
+
+            Habitacion hab = _habitacionRepo.BuscarPorNumero(r.HabitacionNumero);
+            if (hab != null && hab.Estado == "Reservada")
+            {
+                _habitacionRepo.CambiarEstado(r.HabitacionNumero, "Disponible");
+            }
         }
     }
 }

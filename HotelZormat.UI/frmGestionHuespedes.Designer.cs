@@ -277,6 +277,7 @@
             this.Controls.Add(this.lblBuscar);
             this.Name = "frmGestionHuespedes";
             this.Text = "Gestión de huéspedes";
+            this.Load += new System.EventHandler(this.frmGestionHuespedes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHuespedes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

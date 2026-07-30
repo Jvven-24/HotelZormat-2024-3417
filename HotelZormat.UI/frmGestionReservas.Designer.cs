@@ -226,6 +226,7 @@
             this.Controls.Add(this.lblHuesped);
             this.Name = "frmGestionReservas";
             this.Text = "Gestión de reservas";
+            this.Load += new System.EventHandler(this.frmGestionReservas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
