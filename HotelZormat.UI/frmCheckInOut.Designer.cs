@@ -28,19 +28,85 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.lblInfo = new System.Windows.Forms.Label();
+            this.dgvEstadiasActivas = new System.Windows.Forms.DataGridView();
+            this.dgvReservasConfirmadas = new System.Windows.Forms.DataGridView();
+            this.btnCheckOut = new System.Windows.Forms.Button();
+            this.btnCheckIn = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEstadiasActivas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReservasConfirmadas)).BeginInit();
             this.SuspendLayout();
+            // 
+            // lblInfo
+            // 
+            this.lblInfo.AutoSize = true;
+            this.lblInfo.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.lblInfo.Location = new System.Drawing.Point(20, 15);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(315, 13);
+            this.lblInfo.TabIndex = 0;
+            this.lblInfo.Text = "Info — \"Seleccione una reserva confirmada o una estadía activa\"";
+            // 
+            // dgvEstadiasActivas
+            // 
+            this.dgvEstadiasActivas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEstadiasActivas.Location = new System.Drawing.Point(520, 62);
+            this.dgvEstadiasActivas.Name = "dgvEstadiasActivas";
+            this.dgvEstadiasActivas.Size = new System.Drawing.Size(460, 320);
+            this.dgvEstadiasActivas.TabIndex = 1;
+            // 
+            // dgvReservasConfirmadas
+            // 
+            this.dgvReservasConfirmadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReservasConfirmadas.Location = new System.Drawing.Point(20, 62);
+            this.dgvReservasConfirmadas.Name = "dgvReservasConfirmadas";
+            this.dgvReservasConfirmadas.ReadOnly = true;
+            this.dgvReservasConfirmadas.Size = new System.Drawing.Size(460, 320);
+            this.dgvReservasConfirmadas.TabIndex = 2;
+            // 
+            // btnCheckOut
+            // 
+            this.btnCheckOut.Location = new System.Drawing.Point(520, 395);
+            this.btnCheckOut.Name = "btnCheckOut";
+            this.btnCheckOut.Size = new System.Drawing.Size(150, 32);
+            this.btnCheckOut.TabIndex = 3;
+            this.btnCheckOut.Text = "Registrar Check-out";
+            this.btnCheckOut.UseVisualStyleBackColor = true;
+            // 
+            // btnCheckIn
+            // 
+            this.btnCheckIn.Location = new System.Drawing.Point(20, 395);
+            this.btnCheckIn.Name = "btnCheckIn";
+            this.btnCheckIn.Size = new System.Drawing.Size(150, 32);
+            this.btnCheckIn.TabIndex = 4;
+            this.btnCheckIn.Text = "Registrar Check-in";
+            this.btnCheckIn.UseVisualStyleBackColor = true;
             // 
             // frmCheckInOut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(984, 461);
+            this.Controls.Add(this.btnCheckIn);
+            this.Controls.Add(this.btnCheckOut);
+            this.Controls.Add(this.dgvReservasConfirmadas);
+            this.Controls.Add(this.dgvEstadiasActivas);
+            this.Controls.Add(this.lblInfo);
             this.Name = "frmCheckInOut";
             this.Text = "Check-in / Check-out";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEstadiasActivas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReservasConfirmadas)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lblInfo;
+        private System.Windows.Forms.DataGridView dgvEstadiasActivas;
+        private System.Windows.Forms.DataGridView dgvReservasConfirmadas;
+        private System.Windows.Forms.Button btnCheckOut;
+        private System.Windows.Forms.Button btnCheckIn;
     }
 }
