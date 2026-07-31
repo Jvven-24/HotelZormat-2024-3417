@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblFiltroPiso = new System.Windows.Forms.Label();
             this.cboFiltroPiso = new System.Windows.Forms.ComboBox();
             this.lblFiltroEstado = new System.Windows.Forms.Label();
@@ -52,7 +53,9 @@
             this.txtTarifa = new System.Windows.Forms.TextBox();
             this.lblEstado = new System.Windows.Forms.Label();
             this.btnFiltrar = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHabitaciones)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFiltroPiso
@@ -273,6 +276,10 @@
             this.btnFiltrar.UseVisualStyleBackColor = true;
             this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // frmGestionHabitaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,8 +311,10 @@
             this.Controls.Add(this.lblFiltroPiso);
             this.Name = "frmGestionHabitaciones";
             this.Text = "Gestión de habitaciones";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmGestionHabitaciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHabitaciones)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -337,5 +346,6 @@
         private System.Windows.Forms.TextBox txtTarifa;
         private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.Button btnFiltrar;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

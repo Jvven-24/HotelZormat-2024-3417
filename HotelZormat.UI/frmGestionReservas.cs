@@ -35,22 +35,34 @@ namespace HotelZormat.UI
 
         private void frmGestionReservas_Load(object sender, EventArgs e)
         {
-            dgvReservas.Columns.Add("colId", "Id");
-            dgvReservas.Columns.Add("colHuesped", "Huésped");
-            dgvReservas.Columns.Add("colHabitacion", "Habitación");
-            dgvReservas.Columns.Add("colCheckIn", "Check-in");
-            dgvReservas.Columns.Add("colCheckOut", "Check-out");
-            dgvReservas.Columns.Add("colTemporada", "Temporada");
-            dgvReservas.Columns.Add("colEstado", "Estado");
-            dgvReservas.Columns.Add("colMonto", "Monto");
-
-            List<string> temporadas = new List<string> { "Alta", "Media", "Baja" };
-            foreach (string temporada in temporadas)
+            try
             {
-                cboTemporada.Items.Add(temporada);
-            }
+                dgvReservas.Columns.Add("colId", "Id");
+                dgvReservas.Columns.Add("colHuesped", "Huésped");
+                dgvReservas.Columns.Add("colHabitacion", "Habitación");
+                dgvReservas.Columns.Add("colCheckIn", "Check-in");
+                dgvReservas.Columns.Add("colCheckOut", "Check-out");
+                dgvReservas.Columns.Add("colTemporada", "Temporada");
+                dgvReservas.Columns.Add("colEstado", "Estado");
+                dgvReservas.Columns.Add("colMonto", "Monto");
 
-            CargarCombosYGrid();
+                List<string> temporadas = new List<string> { "Alta", "Media", "Baja" };
+                foreach (string temporada in temporadas)
+                {
+                    cboTemporada.Items.Add(temporada);
+                }
+
+                CargarCombosYGrid();
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
+                    "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
         private void CargarCombosYGrid()
@@ -139,13 +151,16 @@ namespace HotelZormat.UI
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
+
             btnCrear.Enabled = false;
             try
             {
-                if (cboHuesped.SelectedIndex < 0 || cboHabitacion.SelectedIndex < 0 || cboTemporada.SelectedItem == null)
+                bool huespedValido = ValidacionesTexto.ValidarComboRequerido(cboHuesped, errorProvider1, "Selecciona un huésped");
+                bool habitacionValida = ValidacionesTexto.ValidarComboRequerido(cboHabitacion, errorProvider1, "Selecciona una habitación");
+                bool temporadaValida = ValidacionesTexto.ValidarComboRequerido(cboTemporada, errorProvider1, "Selecciona una temporada");
+
+                if (!huespedValido || !habitacionValida || !temporadaValida)
                 {
-                    MessageBox.Show("Selecciona huésped, habitación y temporada", "Datos incompletos",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 

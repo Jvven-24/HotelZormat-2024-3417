@@ -22,26 +22,40 @@ namespace HotelZormat.UI
         {
             InitializeComponent();
             _huespedService = new HuespedService();
+            txtTelefono.KeyPress += ValidacionesTexto.SoloDigitos_KeyPress;
+            txtNumeroDocumento.KeyPress += txtNumeroDocumento_KeyPress;
         }
 
         private void frmGestionHuespedes_Load(object sender, EventArgs e)
         {
-            dgvHuespedes.Columns.Add("colId", "Id");
-            dgvHuespedes.Columns.Add("colNombre", "Nombre");
-            dgvHuespedes.Columns.Add("colApellido", "Apellido");
-            dgvHuespedes.Columns.Add("colTipoDoc", "Tipo Doc.");
-            dgvHuespedes.Columns.Add("colNumDoc", "Número Doc.");
-            dgvHuespedes.Columns.Add("colNacionalidad", "Nacionalidad");
-            dgvHuespedes.Columns.Add("colTelefono", "Teléfono");
-            dgvHuespedes.Columns.Add("colEmail", "Email");
-
-            List<string> tiposDocumento = new List<string> { "Cedula", "Pasaporte" };
-            foreach (string tipo in tiposDocumento)
+            try
             {
-                cboTipoDocumento.Items.Add(tipo);
-            }
+                dgvHuespedes.Columns.Add("colId", "Id");
+                dgvHuespedes.Columns.Add("colNombre", "Nombre");
+                dgvHuespedes.Columns.Add("colApellido", "Apellido");
+                dgvHuespedes.Columns.Add("colTipoDoc", "Tipo Doc.");
+                dgvHuespedes.Columns.Add("colNumDoc", "Número Doc.");
+                dgvHuespedes.Columns.Add("colNacionalidad", "Nacionalidad");
+                dgvHuespedes.Columns.Add("colTelefono", "Teléfono");
+                dgvHuespedes.Columns.Add("colEmail", "Email");
 
-            CargarGrid(_huespedService.ObtenerTodos());
+                List<string> tiposDocumento = new List<string> { "Cedula", "Pasaporte" };
+                foreach (string tipo in tiposDocumento)
+                {
+                    cboTipoDocumento.Items.Add(tipo);
+                }
+
+                CargarGrid(_huespedService.ObtenerTodos());
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
+                    "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
         private void CargarGrid(List<Huesped> lista)
@@ -55,12 +69,24 @@ namespace HotelZormat.UI
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtBuscar.Text))
+            try
             {
-                CargarGrid(_huespedService.ObtenerTodos());
-                return;
+                if (string.IsNullOrWhiteSpace(txtBuscar.Text))
+                {
+                    CargarGrid(_huespedService.ObtenerTodos());
+                    return;
+                }
+                CargarGrid(_huespedService.Buscar(txtBuscar.Text));
             }
-            CargarGrid(_huespedService.Buscar(txtBuscar.Text));
+            catch (SqlException)
+            {
+                MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
+                    "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dgvHuespedes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -96,9 +122,21 @@ namespace HotelZormat.UI
                     break;
             }
         }
+        private void txtNumeroDocumento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cboTipoDocumento.SelectedItem?.ToString() == "Cedula" &&
+                !char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            if (!ValidacionesTexto.ValidarComboRequerido(cboTipoDocumento, errorProvider1, "Selecciona el tipo de documento"))
+            {
+                return;
+            }
             btnGuardar.Enabled = false;
             try
             {

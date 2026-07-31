@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblHuesped = new System.Windows.Forms.Label();
             this.lblHabitacion = new System.Windows.Forms.Label();
             this.lblTemporada = new System.Windows.Forms.Label();
@@ -45,7 +46,9 @@
             this.btnProximas = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblHuesped
@@ -147,18 +150,18 @@
             this.lblNoches.AutoSize = true;
             this.lblNoches.Location = new System.Drawing.Point(568, 56);
             this.lblNoches.Name = "lblNoches";
-            this.lblNoches.Size = new System.Drawing.Size(35, 13);
+            this.lblNoches.Size = new System.Drawing.Size(47, 13);
             this.lblNoches.TabIndex = 10;
-            this.lblNoches.Text = "label1";
+            this.lblNoches.Text = "Noches:";
             // 
             // lblMonto
             // 
             this.lblMonto.AutoSize = true;
             this.lblMonto.Location = new System.Drawing.Point(670, 56);
             this.lblMonto.Name = "lblMonto";
-            this.lblMonto.Size = new System.Drawing.Size(35, 13);
+            this.lblMonto.Size = new System.Drawing.Size(40, 13);
             this.lblMonto.TabIndex = 11;
-            this.lblMonto.Text = "label2";
+            this.lblMonto.Text = "Monto:";
             // 
             // btnCrear
             // 
@@ -211,6 +214,10 @@
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // frmGestionReservas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -235,8 +242,10 @@
             this.Controls.Add(this.lblHuesped);
             this.Name = "frmGestionReservas";
             this.Text = "Gestión de reservas";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmGestionReservas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,5 +270,6 @@
         private System.Windows.Forms.Button btnProximas;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnConfirmar;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

@@ -20,8 +20,8 @@ namespace HotelZormat.UI
 
         private void huespedesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmGestionHuespedes gestion = new frmGestionHuespedes();
-            gestion.Show();
+            
+            AbrirPantallas(new frmGestionHuespedes());
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
@@ -41,20 +41,57 @@ namespace HotelZormat.UI
 
         private void menuDashboard_Click(object sender, EventArgs e)
         {
-            frmDashboard dashboard = new frmDashboard();
-            dashboard.Show();
+            AbrirPantallas(new frmDashboard());
         }
 
         private void menuHabitaciones_Click(object sender, EventArgs e)
         {
-            frmGestionHabitaciones gestion = new frmGestionHabitaciones();
-            gestion.Show();
+            AbrirPantallas(new frmGestionHabitaciones());
         }
 
         private void menuReservas_Click(object sender, EventArgs e)
         {
-            frmGestionReservas gestion = new frmGestionReservas();
-            gestion.Show();
+            AbrirPantallas(new frmGestionReservas());
+        }
+
+        private void menuCheckInOut_Click(object sender, EventArgs e)
+        {
+           AbrirPantallas(new frmCheckInOut());
+        }
+
+        private void menuReportes_Click(object sender, EventArgs e)
+        {
+            AbrirPantallas(new frmReportes());
+        }
+
+        private void menuBitacora_Click(object sender, EventArgs e)
+        {
+            AbrirPantallas(new frmBitacora());
+        }
+        private void AbrirPantallas(Form hijo)
+        {
+            foreach (Form abierto in this.MdiChildren)
+            {
+                abierto.Close();
+            }
+
+            hijo.MdiParent = this;
+            hijo.Show();
+        }
+
+        private void menuCerrarSesion_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show("¿Está seguro de que desea cerrar sesión?",
+       "Cerrar sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                SesionActual.UsuarioLogueado = null;
+                frmLogin login = new frmLogin();
+                login.Show();
+                this.Close();
+            }
+
         }
     }
 }

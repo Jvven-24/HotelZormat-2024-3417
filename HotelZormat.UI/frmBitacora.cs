@@ -1,7 +1,10 @@
-﻿using System;
+﻿using HotelZormat.Modelo;
+using HotelZormat.Negocio.Servicios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,9 +15,99 @@ namespace HotelZormat.UI
 {
     public partial class frmBitacora : Form
     {
+        private readonly BitacoraService _bitacoraService;
+        private readonly UsuarioService _usuarioService;
+
         public frmBitacora()
         {
             InitializeComponent();
+            _bitacoraService = new BitacoraService();
+            _usuarioService = new UsuarioService();
+        }
+
+        private void frmBitacora_Load(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+                dgvBitacora.Columns.Add("colFecha", "Fecha/Hora");
+                dgvBitacora.Columns.Add("colUsuario", "Usuario");
+                dgvBitacora.Columns.Add("colAccion", "Acción");
+                dgvBitacora.Columns.Add("colDetalle", "Detalle");
+
+                List<string> acciones = new List<string> { "Login", "CheckIn", "CheckOut", "Facturacion" };
+                foreach (string accion in acciones)
+                {
+                    cboFiltroAccion.Items.Add(accion);
+                }
+
+                CargarGrid(_bitacoraService.ObtenerTodas());
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
+                    "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+        private void CargarGrid(List<RegistroBitacora> registros)
+        {
+            dgvBitacora.Rows.Clear();
+            foreach (RegistroBitacora r in registros)
+            {
+                Usuario u = _usuarioService.BuscarPorId(r.UsuarioId);
+                string nombreUsuario = u != null ? u.NombreCompleto : "(desconocido)";
+
+                dgvBitacora.Rows.Add(r.FechaHora.ToString("dd/MM/yyyy HH:mm:ss"), nombreUsuario, r.Accion, r.Detalle);
+            }
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            if (cboFiltroAccion.SelectedItem == null)
+            {
+                MessageBox.Show("Selecciona una acción para filtrar", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                CargarGrid(_bitacoraService.ObtenerPorAccion(cboFiltroAccion.SelectedItem.ToString()));
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
+                    "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnVerTodas_Click(object sender, EventArgs e)
+        {
+            cboFiltroAccion.SelectedIndex = -1;
+            try
+            {
+                CargarGrid(_bitacoraService.ObtenerTodas());
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
+                    "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }

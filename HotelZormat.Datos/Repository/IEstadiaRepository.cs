@@ -17,6 +17,7 @@ namespace HotelZormat.Datos.Repositorio
         void Cerrar(int id, DateTime fechaSalida);
         List<Estadia> ObtenerHistorialPorHuesped(int huespedId);
         List<Estadia> ObtenerActivasDelDia();
+        Estadia BuscarPorId(int id);
     }
     public class EstadiaRepository : IEstadiaRepository
     {
@@ -117,6 +118,25 @@ namespace HotelZormat.Datos.Repositorio
             e.FechaCheckInReal = (DateTime)reader["FechaCheckInReal"];
             e.FechaCheckOutReal = reader["FechaCheckOutReal"] == DBNull.Value ? (DateTime?)null : (DateTime)reader["FechaCheckOutReal"];
             e.Estado = (string)reader["Estado"];
+            return e;
+        }
+
+        public Estadia BuscarPorId(int id)
+        {
+            Estadia e = null;
+            using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
+            {
+                string sql = "SELECT Id, ReservaId, FechaCheckInReal, FechaCheckOutReal, Estado FROM Estadias WHERE Id = @id";
+                SqlCommand cmd = new SqlCommand(sql, conexion);
+                cmd.Parameters.AddWithValue("@id", id);
+
+                conexion.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    e = MapearEstadia(reader);
+                }
+            }
             return e;
         }
     }

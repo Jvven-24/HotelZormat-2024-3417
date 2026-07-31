@@ -223,5 +223,9 @@ namespace HotelZormat.Negocio.Servicios
                 _habitacionRepo.CambiarEstado(r.HabitacionNumero, "Disponible");
             }
         }
+        public Reserva BuscarPorId(int id)
+        {
+            return _repo.BuscarPorId(id);
+        }
     }
 }

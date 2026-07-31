@@ -36,7 +36,31 @@ namespace HotelZormat.Datos.Repositorio
         }
         public List<RegistroBitacora> ObtenerTodas()
         {
-            throw new NotImplementedException();
+            List<RegistroBitacora> registros = new List<RegistroBitacora>();
+            using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
+            {
+                string sql = "SELECT Id, UsuarioId, Accion, Detalle, FechaHora FROM Bitacora ORDER BY FechaHora DESC";
+                SqlCommand cmd = new SqlCommand(sql, conexion);
+
+                conexion.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    registros.Add(MapearRegistro(reader));
+                }
+            }
+            return registros;
+        }
+
+        private RegistroBitacora MapearRegistro(SqlDataReader reader)
+        {
+            RegistroBitacora r = new RegistroBitacora();
+            r.Id = (int)reader["Id"];
+            r.UsuarioId = (int)reader["UsuarioId"];
+            r.Accion = (string)reader["Accion"];
+            r.Detalle = reader["Detalle"] == DBNull.Value ? null : (string)reader["Detalle"];
+            r.FechaHora = (DateTime)reader["FechaHora"];
+            return r;
         }
 
     }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblBuscar = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.txtBuscar = new System.Windows.Forms.TextBox();
@@ -51,7 +52,9 @@
             this.lblTelefono = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHuespedes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblBuscar
@@ -254,6 +257,10 @@
             this.txtEmail.Size = new System.Drawing.Size(200, 20);
             this.txtEmail.TabIndex = 22;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // frmGestionHuespedes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -284,8 +291,10 @@
             this.Controls.Add(this.lblBuscar);
             this.Name = "frmGestionHuespedes";
             this.Text = "Gestión de huéspedes";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmGestionHuespedes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHuespedes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -316,5 +325,6 @@
         private System.Windows.Forms.Label lblTelefono;
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

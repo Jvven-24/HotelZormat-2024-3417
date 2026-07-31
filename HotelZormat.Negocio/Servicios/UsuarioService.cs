@@ -46,6 +46,10 @@ namespace HotelZormat.Negocio.Servicios
 
             return null;                                                   
         }
+        public Usuario BuscarPorId(int id)
+        {
+            return _usuarioRepository.BuscarPorId(id);
+        }
     }
 }
 
