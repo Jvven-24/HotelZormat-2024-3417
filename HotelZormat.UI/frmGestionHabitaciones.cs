@@ -163,6 +163,15 @@ namespace HotelZormat.UI
                 MessageBox.Show("Ingresa un número de habitación válido", "Aviso",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            catch (SqlException)
+            {
+                MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
+                    "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)

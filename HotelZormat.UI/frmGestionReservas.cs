@@ -291,7 +291,19 @@ namespace HotelZormat.UI
 
         private void btnProximas_Click(object sender, EventArgs e)
         {
-            CargarGrid(_reservaService.ObtenerProximas(7));
+            try
+            {
+                CargarGrid(_reservaService.ObtenerProximas(7));
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
+                    "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 

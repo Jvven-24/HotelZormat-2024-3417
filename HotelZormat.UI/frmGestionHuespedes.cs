@@ -235,32 +235,47 @@ namespace HotelZormat.UI
 
         private void btnHistorial_Click(object sender, EventArgs e)
         {
-            if (_idSeleccionado == 0)
+            try
             {
-                MessageBox.Show("Selecciona un huésped del listado", "Aviso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                if (_idSeleccionado == 0)
+                {
+                    MessageBox.Show("Selecciona un huésped del listado", "Aviso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            List<Estadia> historial = new EstadiaService().ObtenerHistorialPorHuesped(_idSeleccionado);
+                List<Estadia> historial = new EstadiaService().ObtenerHistorialPorHuesped(_idSeleccionado);
 
-            if (historial.Count == 0)
-            {
-                MessageBox.Show("Este huésped todavía no tiene estadías registradas", "Historial",
+                if (historial.Count == 0)
+                {
+                    MessageBox.Show("Este huésped todavía no tiene estadías registradas", "Historial",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                StringBuilder texto = new StringBuilder();
+                foreach (Estadia est in historial)
+                {
+                    string salida = est.FechaCheckOutReal.HasValue ? est.FechaCheckOutReal.Value.ToString("dd/MM/yyyy") : "En curso";
+                    texto.AppendLine("Reserva #" + est.ReservaId + " — Entrada: " + est.FechaCheckInReal.ToString("dd/MM/yyyy") +
+                                      " — Salida: " + salida + " — Estado: " + est.Estado);
+                }
+
+                MessageBox.Show(texto.ToString(), "Historial de estadías",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
 
-            StringBuilder texto = new StringBuilder();
-            foreach (Estadia est in historial)
-            {
-                string salida = est.FechaCheckOutReal.HasValue ? est.FechaCheckOutReal.Value.ToString("dd/MM/yyyy") : "En curso";
-                texto.AppendLine("Reserva #" + est.ReservaId + " — Entrada: " + est.FechaCheckInReal.ToString("dd/MM/yyyy") +
-                                  " — Salida: " + salida + " — Estado: " + est.Estado);
             }
+            
 
-            MessageBox.Show(texto.ToString(), "Historial de estadías",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            catch (SqlException)
+{
+                MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
+                    "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+{
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }  
 }
