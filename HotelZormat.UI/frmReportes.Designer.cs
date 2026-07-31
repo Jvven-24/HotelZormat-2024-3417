@@ -152,6 +152,7 @@
             this.Controls.Add(this.tabReportes);
             this.Name = "frmReportes";
             this.Text = "Reportes";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmReportes_Load);
             this.tabReportes.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

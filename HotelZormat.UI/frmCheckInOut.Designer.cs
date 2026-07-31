@@ -99,6 +99,7 @@
             this.Controls.Add(this.lblInfo);
             this.Name = "frmCheckInOut";
             this.Text = "Check-in / Check-out";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmCheckInOut_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstadiasActivas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservasConfirmadas)).EndInit();

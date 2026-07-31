@@ -58,7 +58,7 @@ namespace HotelZormat.UI
                     lblInfo.TextAlign = ContentAlignment.MiddleCenter;
                     lblInfo.ForeColor = Color.White;
 
-                    tarjeta.Controls.Add(tarjeta);
+                    tarjeta.Controls.Add(lblInfo);
                     flpHabitaciones.Controls.Add(tarjeta);
                 }
             }

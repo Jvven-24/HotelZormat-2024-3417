@@ -147,18 +147,18 @@
             this.lblNoches.AutoSize = true;
             this.lblNoches.Location = new System.Drawing.Point(568, 56);
             this.lblNoches.Name = "lblNoches";
-            this.lblNoches.Size = new System.Drawing.Size(35, 13);
+            this.lblNoches.Size = new System.Drawing.Size(47, 13);
             this.lblNoches.TabIndex = 10;
-            this.lblNoches.Text = "label1";
+            this.lblNoches.Text = "Noches:";
             // 
             // lblMonto
             // 
             this.lblMonto.AutoSize = true;
             this.lblMonto.Location = new System.Drawing.Point(670, 56);
             this.lblMonto.Name = "lblMonto";
-            this.lblMonto.Size = new System.Drawing.Size(35, 13);
+            this.lblMonto.Size = new System.Drawing.Size(40, 13);
             this.lblMonto.TabIndex = 11;
-            this.lblMonto.Text = "label2";
+            this.lblMonto.Text = "Monto:";
             // 
             // btnCrear
             // 
@@ -235,6 +235,7 @@
             this.Controls.Add(this.lblHuesped);
             this.Name = "frmGestionReservas";
             this.Text = "Gestión de reservas";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmGestionReservas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservas)).EndInit();
             this.ResumeLayout(false);

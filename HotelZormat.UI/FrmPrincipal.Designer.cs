@@ -61,6 +61,7 @@
             this.menuPrincipal.Size = new System.Drawing.Size(984, 24);
             this.menuPrincipal.TabIndex = 0;
             this.menuPrincipal.Text = "menuStrip1";
+            this.IsMdiContainer = true;
             // 
             // menuDashboard
             // 

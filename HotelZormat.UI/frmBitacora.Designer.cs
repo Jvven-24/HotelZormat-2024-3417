@@ -85,6 +85,7 @@
             this.Controls.Add(this.cboFiltroAccion);
             this.Name = "frmBitacora";
             this.Text = "Bitácora (solo Admin)";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmBitacora_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBitacora)).EndInit();
             this.ResumeLayout(false);

@@ -152,6 +152,7 @@
             this.Controls.Add(this.lblHabitacion);
             this.Name = "frmFactura";
             this.Text = "Factura";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmFactura_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

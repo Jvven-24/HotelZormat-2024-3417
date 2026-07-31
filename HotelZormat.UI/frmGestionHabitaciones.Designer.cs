@@ -304,6 +304,7 @@
             this.Controls.Add(this.lblFiltroPiso);
             this.Name = "frmGestionHabitaciones";
             this.Text = "Gestión de habitaciones";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmGestionHabitaciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHabitaciones)).EndInit();
             this.ResumeLayout(false);

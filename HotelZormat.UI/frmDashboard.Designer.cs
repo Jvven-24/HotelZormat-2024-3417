@@ -59,6 +59,7 @@
             this.Controls.Add(this.flpHabitaciones);
             this.Name = "frmDashboard";
             this.Text = "Tablero de habitaciones";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmDashboard_Load);
             this.ResumeLayout(false);
 

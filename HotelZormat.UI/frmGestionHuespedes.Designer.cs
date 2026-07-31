@@ -284,6 +284,7 @@
             this.Controls.Add(this.lblBuscar);
             this.Name = "frmGestionHuespedes";
             this.Text = "Gestión de huéspedes";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmGestionHuespedes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHuespedes)).EndInit();
             this.ResumeLayout(false);
