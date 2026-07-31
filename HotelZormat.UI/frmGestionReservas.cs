@@ -151,13 +151,16 @@ namespace HotelZormat.UI
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
+
             btnCrear.Enabled = false;
             try
             {
-                if (cboHuesped.SelectedIndex < 0 || cboHabitacion.SelectedIndex < 0 || cboTemporada.SelectedItem == null)
+                bool huespedValido = ValidacionesTexto.ValidarComboRequerido(cboHuesped, errorProvider1, "Selecciona un huésped");
+                bool habitacionValida = ValidacionesTexto.ValidarComboRequerido(cboHabitacion, errorProvider1, "Selecciona una habitación");
+                bool temporadaValida = ValidacionesTexto.ValidarComboRequerido(cboTemporada, errorProvider1, "Selecciona una temporada");
+
+                if (!huespedValido || !habitacionValida || !temporadaValida)
                 {
-                    MessageBox.Show("Selecciona huésped, habitación y temporada", "Datos incompletos",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 

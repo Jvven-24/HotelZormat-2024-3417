@@ -14,6 +14,8 @@ namespace HotelZormat.Datos.Repositorio
     {
         Usuario BuscarPorNombreUsuario(string nombreUsuario);
         Usuario BuscarPorId(int id);
+        List<Usuario> ObtenerTodos();
+        void Insertar(Usuario usuario);
     }
     public class UsuarioRepository : IUsuarioRepository
     {
@@ -66,6 +68,48 @@ namespace HotelZormat.Datos.Repositorio
                 }
             }
             return usuario;
+
+        }
+        public List<Usuario> ObtenerTodos()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
+            {
+                string sql = "SELECT Id, NombreUsuario, Contrasena, NombreCompleto, Rol, Activo FROM Usuarios";
+                SqlCommand cmd = new SqlCommand(sql, conexion);
+
+                conexion.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Usuario usuario = new Usuario();
+                    usuario.Id = (int)reader["Id"];
+                    usuario.NombreUsuario = (string)reader["NombreUsuario"];
+                    usuario.Contrasena = (string)reader["Contrasena"];
+                    usuario.NombreCompleto = (string)reader["NombreCompleto"];
+                    usuario.Rol = (string)reader["Rol"];
+                    usuario.Activo = (bool)reader["Activo"];
+                    lista.Add(usuario);
+                }
+            }
+            return lista;
+        }
+
+        public void Insertar(Usuario usuario)
+        {
+            using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
+            {
+                string sql = "INSERT INTO Usuarios (NombreUsuario, Contrasena, NombreCompleto, Rol, Activo) " +
+                             "VALUES (@usuario, @contrasena, @nombreCompleto, @rol, 1)";
+                SqlCommand cmd = new SqlCommand(sql, conexion);
+                cmd.Parameters.AddWithValue("@usuario", usuario.NombreUsuario);
+                cmd.Parameters.AddWithValue("@contrasena", usuario.Contrasena);
+                cmd.Parameters.AddWithValue("@nombreCompleto", usuario.NombreCompleto);
+                cmd.Parameters.AddWithValue("@rol", usuario.Rol);
+
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 

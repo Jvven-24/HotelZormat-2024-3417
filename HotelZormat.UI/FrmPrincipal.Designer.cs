@@ -41,6 +41,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
+            this.menuCerrarSesion = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPrincipal.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -55,13 +56,13 @@
             this.menuCheckInOut,
             this.menuReportes,
             this.menuBitacora,
-            this.menuSalir});
+            this.menuSalir,
+            this.menuCerrarSesion});
             this.menuPrincipal.Location = new System.Drawing.Point(0, 0);
             this.menuPrincipal.Name = "menuPrincipal";
             this.menuPrincipal.Size = new System.Drawing.Size(984, 24);
             this.menuPrincipal.TabIndex = 0;
             this.menuPrincipal.Text = "menuStrip1";
-            this.IsMdiContainer = true;
             // 
             // menuDashboard
             // 
@@ -142,6 +143,15 @@
             this.lblUsuario.Size = new System.Drawing.Size(47, 17);
             this.lblUsuario.Text = "Usuario";
             // 
+            // menuCerrarSesion
+            // 
+            this.menuCerrarSesion.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.menuCerrarSesion.Name = "menuCerrarSesion";
+            this.menuCerrarSesion.Size = new System.Drawing.Size(88, 20);
+            this.menuCerrarSesion.Text = "Cerrar Sesion";
+            this.menuCerrarSesion.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.menuCerrarSesion.Click += new System.EventHandler(this.menuCerrarSesion_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -149,6 +159,7 @@
             this.ClientSize = new System.Drawing.Size(984, 581);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuPrincipal);
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuPrincipal;
             this.Name = "FrmPrincipal";
             this.Text = "Hotel Zormat — Sistema de Gestión";
@@ -177,6 +188,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuSalir;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblUsuario;
+        private System.Windows.Forms.ToolStripMenuItem menuCerrarSesion;
     }
 }
 

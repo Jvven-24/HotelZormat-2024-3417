@@ -23,6 +23,10 @@ namespace HotelZormat.UI
         {
             InitializeComponent();
             _habitacionService = new HabitacionService();
+            txtNumero.KeyPress += ValidacionesTexto.SoloDigitos_KeyPress;
+            txtPiso.KeyPress += ValidacionesTexto.SoloDigitos_KeyPress;
+            txtCapacidad.KeyPress += ValidacionesTexto.SoloDigitos_KeyPress;
+            txtTarifa.KeyPress += ValidacionesTexto.SoloDecimal_KeyPress;
         }
         private Color ObtenerColorPorEstado(string estado)       
         {
@@ -93,15 +97,27 @@ namespace HotelZormat.UI
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            int? piso = null;
-            if (cboFiltroPiso.SelectedItem.ToString() != "Todos")
+            try
             {
-                piso = int.Parse(cboFiltroPiso.SelectedItem.ToString());
+                int? piso = null;
+                if (cboFiltroPiso.SelectedItem.ToString() != "Todos")
+                {
+                    piso = int.Parse(cboFiltroPiso.SelectedItem.ToString());
+                }
+
+                string estado = cboFiltroEstado.SelectedItem.ToString() == "Todos" ? null : cboFiltroEstado.SelectedItem.ToString();
+
+                CargarGrid(_habitacionService.ObtenerPorFiltro(piso, estado));
             }
-
-            string estado = cboFiltroEstado.SelectedItem.ToString() == "Todos" ? null : cboFiltroEstado.SelectedItem.ToString();
-
-            CargarGrid(_habitacionService.ObtenerPorFiltro(piso, estado));
+            catch (SqlException)
+            {
+                MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
+                    "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void cboTipo_SelectedIndexChanged(object sender, EventArgs e)
@@ -151,6 +167,13 @@ namespace HotelZormat.UI
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            bool tipoValido = ValidacionesTexto.ValidarComboRequerido(cboTipo, errorProvider1, "Selecciona un tipo de habitación");
+            bool estadoValido = ValidacionesTexto.ValidarComboRequerido(cboEstado, errorProvider1, "Selecciona un estado");
+
+            if (!tipoValido || !estadoValido)
+            {
+                return;
+            }
             btnGuardar.Enabled = false;
             try
             {

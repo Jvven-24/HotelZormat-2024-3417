@@ -78,5 +78,20 @@ namespace HotelZormat.UI
             hijo.MdiParent = this;
             hijo.Show();
         }
+
+        private void menuCerrarSesion_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show("¿Está seguro de que desea cerrar sesión?",
+       "Cerrar sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                SesionActual.UsuarioLogueado = null;
+                frmLogin login = new frmLogin();
+                login.Show();
+                this.Close();
+            }
+
+        }
     }
 }
