@@ -34,6 +34,9 @@
             // 
             // flpHabitaciones
             // 
+            this.flpHabitaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flpHabitaciones.AutoScroll = true;
             this.flpHabitaciones.Location = new System.Drawing.Point(20, 60);
             this.flpHabitaciones.Name = "flpHabitaciones";

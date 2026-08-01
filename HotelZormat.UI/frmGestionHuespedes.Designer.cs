@@ -68,6 +68,7 @@
             // 
             // lblNombre
             // 
+            this.lblNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNombre.AutoSize = true;
             this.lblNombre.Location = new System.Drawing.Point(700, 55);
             this.lblNombre.Name = "lblNombre";
@@ -94,6 +95,9 @@
             // 
             // dgvHuespedes
             // 
+            this.dgvHuespedes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvHuespedes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHuespedes.Location = new System.Drawing.Point(20, 50);
             this.dgvHuespedes.Name = "dgvHuespedes";
@@ -105,6 +109,7 @@
             // 
             // btnGuardar
             // 
+            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnGuardar.Location = new System.Drawing.Point(20, 365);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(90, 28);
@@ -115,6 +120,7 @@
             // 
             // btnEliminar
             // 
+            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEliminar.Location = new System.Drawing.Point(120, 365);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(90, 28);
@@ -125,6 +131,7 @@
             // 
             // btnLimpiar
             // 
+            this.btnLimpiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLimpiar.Location = new System.Drawing.Point(220, 365);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(90, 28);
@@ -135,6 +142,7 @@
             // 
             // btnHistorial
             // 
+            this.btnHistorial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnHistorial.Location = new System.Drawing.Point(320, 365);
             this.btnHistorial.Name = "btnHistorial";
             this.btnHistorial.Size = new System.Drawing.Size(110, 28);
@@ -145,6 +153,7 @@
             // 
             // txtNombre
             // 
+            this.txtNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNombre.Location = new System.Drawing.Point(780, 52);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(200, 20);
@@ -152,6 +161,7 @@
             // 
             // lblApellido
             // 
+            this.lblApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblApellido.AutoSize = true;
             this.lblApellido.Location = new System.Drawing.Point(700, 85);
             this.lblApellido.Name = "lblApellido";
@@ -161,6 +171,7 @@
             // 
             // txtApellido
             // 
+            this.txtApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtApellido.Location = new System.Drawing.Point(780, 82);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(200, 20);
@@ -168,6 +179,7 @@
             // 
             // lblTipoDocumento
             // 
+            this.lblTipoDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTipoDocumento.AutoSize = true;
             this.lblTipoDocumento.Location = new System.Drawing.Point(700, 115);
             this.lblTipoDocumento.Name = "lblTipoDocumento";
@@ -177,6 +189,7 @@
             // 
             // cboTipoDocumento
             // 
+            this.cboTipoDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboTipoDocumento.FormattingEnabled = true;
             this.cboTipoDocumento.Location = new System.Drawing.Point(780, 112);
             this.cboTipoDocumento.Name = "cboTipoDocumento";
@@ -186,6 +199,7 @@
             // 
             // lblNumeroDocumento
             // 
+            this.lblNumeroDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNumeroDocumento.AutoSize = true;
             this.lblNumeroDocumento.Location = new System.Drawing.Point(700, 145);
             this.lblNumeroDocumento.Name = "lblNumeroDocumento";
@@ -195,6 +209,7 @@
             // 
             // txtNumeroDocumento
             // 
+            this.txtNumeroDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNumeroDocumento.Location = new System.Drawing.Point(780, 142);
             this.txtNumeroDocumento.Name = "txtNumeroDocumento";
             this.txtNumeroDocumento.Size = new System.Drawing.Size(200, 20);
@@ -202,6 +217,7 @@
             // 
             // lblAyuda
             // 
+            this.lblAyuda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAyuda.AutoSize = true;
             this.lblAyuda.Location = new System.Drawing.Point(780, 164);
             this.lblAyuda.Name = "lblAyuda";
@@ -211,6 +227,7 @@
             // 
             // lblNacionalidad
             // 
+            this.lblNacionalidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNacionalidad.AutoSize = true;
             this.lblNacionalidad.Location = new System.Drawing.Point(700, 190);
             this.lblNacionalidad.Name = "lblNacionalidad";
@@ -220,6 +237,7 @@
             // 
             // txtNacionalidad
             // 
+            this.txtNacionalidad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNacionalidad.Location = new System.Drawing.Point(780, 187);
             this.txtNacionalidad.Name = "txtNacionalidad";
             this.txtNacionalidad.Size = new System.Drawing.Size(200, 20);
@@ -227,6 +245,7 @@
             // 
             // txtTelefono
             // 
+            this.txtTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTelefono.Location = new System.Drawing.Point(780, 217);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(200, 20);
@@ -234,6 +253,7 @@
             // 
             // lblTelefono
             // 
+            this.lblTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTelefono.AutoSize = true;
             this.lblTelefono.Location = new System.Drawing.Point(700, 220);
             this.lblTelefono.Name = "lblTelefono";
@@ -243,6 +263,7 @@
             // 
             // lblEmail
             // 
+            this.lblEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEmail.AutoSize = true;
             this.lblEmail.Location = new System.Drawing.Point(700, 250);
             this.lblEmail.Name = "lblEmail";
@@ -252,6 +273,7 @@
             // 
             // txtEmail
             // 
+            this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEmail.Location = new System.Drawing.Point(780, 247);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(200, 20);

@@ -138,8 +138,9 @@ namespace HotelZormat.UI
                 "Confirmar check-in", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (resultado != DialogResult.Yes) return;
-
+            
             btnCheckIn.Enabled = false;
+            Cursor.Current = Cursors.WaitCursor;
             try
             {
                 _estadiaService.HacerCheckIn(_idReservaSeleccionada);
@@ -176,6 +177,7 @@ namespace HotelZormat.UI
             }
             finally
             {
+                Cursor.Current = Cursors.Default;
                 btnCheckIn.Enabled = true;
             }
 

@@ -49,26 +49,33 @@
             // 
             // dgvEstadiasActivas
             // 
+            this.dgvEstadiasActivas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvEstadiasActivas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEstadiasActivas.Location = new System.Drawing.Point(520, 62);
             this.dgvEstadiasActivas.Name = "dgvEstadiasActivas";
             this.dgvEstadiasActivas.ReadOnly = true;
+            this.dgvEstadiasActivas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEstadiasActivas.Size = new System.Drawing.Size(460, 320);
             this.dgvEstadiasActivas.TabIndex = 1;
             this.dgvEstadiasActivas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEstadiasActivas_CellContentClick);
             // 
             // dgvReservasConfirmadas
             // 
+            this.dgvReservasConfirmadas.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvReservasConfirmadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvReservasConfirmadas.Location = new System.Drawing.Point(20, 62);
             this.dgvReservasConfirmadas.Name = "dgvReservasConfirmadas";
             this.dgvReservasConfirmadas.ReadOnly = true;
+            this.dgvReservasConfirmadas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvReservasConfirmadas.Size = new System.Drawing.Size(460, 320);
             this.dgvReservasConfirmadas.TabIndex = 2;
             this.dgvReservasConfirmadas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservasConfirmadas_CellContentClick);
             // 
             // btnCheckOut
             // 
+            this.btnCheckOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCheckOut.Location = new System.Drawing.Point(520, 395);
             this.btnCheckOut.Name = "btnCheckOut";
             this.btnCheckOut.Size = new System.Drawing.Size(150, 32);
@@ -79,6 +86,7 @@
             // 
             // btnCheckIn
             // 
+            this.btnCheckIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCheckIn.Location = new System.Drawing.Point(20, 395);
             this.btnCheckIn.Name = "btnCheckIn";
             this.btnCheckIn.Size = new System.Drawing.Size(150, 32);

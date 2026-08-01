@@ -86,7 +86,9 @@ namespace HotelZormat.UI
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
+
             btnConsultar.Enabled = false;
+            Cursor.Current = Cursors.WaitCursor;
             try
             {
                 if (dtpHasta.Value.Date < dtpDesde.Value.Date)
@@ -125,6 +127,7 @@ namespace HotelZormat.UI
             }
             finally
             {
+                Cursor.Current = Cursors.Default;
                 btnConsultar.Enabled = true;
             }
         }

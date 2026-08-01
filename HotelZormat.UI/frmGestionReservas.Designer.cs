@@ -175,6 +175,9 @@
             // 
             // dgvReservas
             // 
+            this.dgvReservas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvReservas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvReservas.Location = new System.Drawing.Point(20, 105);
             this.dgvReservas.Name = "dgvReservas";
@@ -186,6 +189,7 @@
             // 
             // btnProximas
             // 
+            this.btnProximas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnProximas.Location = new System.Drawing.Point(260, 420);
             this.btnProximas.Name = "btnProximas";
             this.btnProximas.Size = new System.Drawing.Size(150, 28);
@@ -196,6 +200,7 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancelar.Location = new System.Drawing.Point(140, 420);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(110, 28);
@@ -206,6 +211,7 @@
             // 
             // btnConfirmar
             // 
+            this.btnConfirmar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnConfirmar.Location = new System.Drawing.Point(20, 420);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(110, 28);

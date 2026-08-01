@@ -80,6 +80,9 @@
             // 
             // lstLineas
             // 
+            this.lstLineas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstLineas.FormattingEnabled = true;
             this.lstLineas.Location = new System.Drawing.Point(20, 112);
             this.lstLineas.Name = "lstLineas";
@@ -88,8 +91,9 @@
             // 
             // lblPropina
             // 
+            this.lblPropina.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPropina.AutoSize = true;
-            this.lblPropina.Location = new System.Drawing.Point(360, 412);
+            this.lblPropina.Location = new System.Drawing.Point(347, 412);
             this.lblPropina.Name = "lblPropina";
             this.lblPropina.Size = new System.Drawing.Size(43, 13);
             this.lblPropina.TabIndex = 5;
@@ -98,8 +102,9 @@
             // 
             // lblItbis
             // 
+            this.lblItbis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblItbis.AutoSize = true;
-            this.lblItbis.Location = new System.Drawing.Point(360, 392);
+            this.lblItbis.Location = new System.Drawing.Point(347, 392);
             this.lblItbis.Name = "lblItbis";
             this.lblItbis.Size = new System.Drawing.Size(34, 13);
             this.lblItbis.TabIndex = 6;
@@ -108,8 +113,9 @@
             // 
             // lblTotal
             // 
+            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(360, 436);
+            this.lblTotal.Location = new System.Drawing.Point(347, 436);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(42, 13);
             this.lblTotal.TabIndex = 7;
@@ -117,8 +123,9 @@
             // 
             // lblSubtotal
             // 
+            this.lblSubtotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSubtotal.AutoSize = true;
-            this.lblSubtotal.Location = new System.Drawing.Point(360, 372);
+            this.lblSubtotal.Location = new System.Drawing.Point(347, 372);
             this.lblSubtotal.Name = "lblSubtotal";
             this.lblSubtotal.Size = new System.Drawing.Size(44, 13);
             this.lblSubtotal.TabIndex = 8;

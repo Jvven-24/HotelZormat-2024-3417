@@ -30,22 +30,25 @@
         {
             this.tabReportes = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dtpDesde = new System.Windows.Forms.DateTimePicker();
-            this.dtpHasta = new System.Windows.Forms.DateTimePicker();
-            this.btnConsultar = new System.Windows.Forms.Button();
-            this.lblCantidadFacturas = new System.Windows.Forms.Label();
-            this.lblIngresosTotales = new System.Windows.Forms.Label();
-            this.lblTotalOcupadas = new System.Windows.Forms.Label();
             this.dgvOcupacion = new System.Windows.Forms.DataGridView();
+            this.lblTotalOcupadas = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblIngresosTotales = new System.Windows.Forms.Label();
+            this.lblCantidadFacturas = new System.Windows.Forms.Label();
+            this.btnConsultar = new System.Windows.Forms.Button();
+            this.dtpHasta = new System.Windows.Forms.DateTimePicker();
+            this.dtpDesde = new System.Windows.Forms.DateTimePicker();
             this.tabReportes.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOcupacion)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabReportes
             // 
+            this.tabReportes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabReportes.Controls.Add(this.tabPage1);
             this.tabReportes.Controls.Add(this.tabPage2);
             this.tabReportes.Location = new System.Drawing.Point(10, 10);
@@ -66,6 +69,29 @@
             this.tabPage1.Text = "Ocupación del día";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // dgvOcupacion
+            // 
+            this.dgvOcupacion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvOcupacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOcupacion.Location = new System.Drawing.Point(20, 46);
+            this.dgvOcupacion.Name = "dgvOcupacion";
+            this.dgvOcupacion.ReadOnly = true;
+            this.dgvOcupacion.Size = new System.Drawing.Size(780, 340);
+            this.dgvOcupacion.TabIndex = 1;
+            // 
+            // lblTotalOcupadas
+            // 
+            this.lblTotalOcupadas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblTotalOcupadas.AutoSize = true;
+            this.lblTotalOcupadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalOcupadas.Location = new System.Drawing.Point(20, 396);
+            this.lblTotalOcupadas.Name = "lblTotalOcupadas";
+            this.lblTotalOcupadas.Size = new System.Drawing.Size(41, 13);
+            this.lblTotalOcupadas.TabIndex = 0;
+            this.lblTotalOcupadas.Text = "label1";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.lblIngresosTotales);
@@ -81,21 +107,23 @@
             this.tabPage2.Text = "Ingresos por rango";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dtpDesde
+            // lblIngresosTotales
             // 
-            this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDesde.Location = new System.Drawing.Point(70, 52);
-            this.dtpDesde.Name = "dtpDesde";
-            this.dtpDesde.Size = new System.Drawing.Size(140, 20);
-            this.dtpDesde.TabIndex = 0;
+            this.lblIngresosTotales.AutoSize = true;
+            this.lblIngresosTotales.Location = new System.Drawing.Point(230, 128);
+            this.lblIngresosTotales.Name = "lblIngresosTotales";
+            this.lblIngresosTotales.Size = new System.Drawing.Size(81, 13);
+            this.lblIngresosTotales.TabIndex = 4;
+            this.lblIngresosTotales.Text = "Ingresos totales";
             // 
-            // dtpHasta
+            // lblCantidadFacturas
             // 
-            this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpHasta.Location = new System.Drawing.Point(275, 52);
-            this.dtpHasta.Name = "dtpHasta";
-            this.dtpHasta.Size = new System.Drawing.Size(140, 20);
-            this.dtpHasta.TabIndex = 1;
+            this.lblCantidadFacturas.AutoSize = true;
+            this.lblCantidadFacturas.Location = new System.Drawing.Point(230, 100);
+            this.lblCantidadFacturas.Name = "lblCantidadFacturas";
+            this.lblCantidadFacturas.Size = new System.Drawing.Size(93, 13);
+            this.lblCantidadFacturas.TabIndex = 3;
+            this.lblCantidadFacturas.Text = "Cantidad Facturas";
             // 
             // btnConsultar
             // 
@@ -107,42 +135,21 @@
             this.btnConsultar.UseVisualStyleBackColor = true;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
-            // lblCantidadFacturas
+            // dtpHasta
             // 
-            this.lblCantidadFacturas.AutoSize = true;
-            this.lblCantidadFacturas.Location = new System.Drawing.Point(230, 100);
-            this.lblCantidadFacturas.Name = "lblCantidadFacturas";
-            this.lblCantidadFacturas.Size = new System.Drawing.Size(93, 13);
-            this.lblCantidadFacturas.TabIndex = 3;
-            this.lblCantidadFacturas.Text = "Cantidad Facturas";
+            this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpHasta.Location = new System.Drawing.Point(275, 52);
+            this.dtpHasta.Name = "dtpHasta";
+            this.dtpHasta.Size = new System.Drawing.Size(140, 20);
+            this.dtpHasta.TabIndex = 1;
             // 
-            // lblIngresosTotales
+            // dtpDesde
             // 
-            this.lblIngresosTotales.AutoSize = true;
-            this.lblIngresosTotales.Location = new System.Drawing.Point(230, 128);
-            this.lblIngresosTotales.Name = "lblIngresosTotales";
-            this.lblIngresosTotales.Size = new System.Drawing.Size(81, 13);
-            this.lblIngresosTotales.TabIndex = 4;
-            this.lblIngresosTotales.Text = "Ingresos totales";
-            // 
-            // lblTotalOcupadas
-            // 
-            this.lblTotalOcupadas.AutoSize = true;
-            this.lblTotalOcupadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalOcupadas.Location = new System.Drawing.Point(20, 396);
-            this.lblTotalOcupadas.Name = "lblTotalOcupadas";
-            this.lblTotalOcupadas.Size = new System.Drawing.Size(41, 13);
-            this.lblTotalOcupadas.TabIndex = 0;
-            this.lblTotalOcupadas.Text = "label1";
-            // 
-            // dgvOcupacion
-            // 
-            this.dgvOcupacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOcupacion.Location = new System.Drawing.Point(20, 46);
-            this.dgvOcupacion.Name = "dgvOcupacion";
-            this.dgvOcupacion.ReadOnly = true;
-            this.dgvOcupacion.Size = new System.Drawing.Size(780, 340);
-            this.dgvOcupacion.TabIndex = 1;
+            this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDesde.Location = new System.Drawing.Point(70, 52);
+            this.dtpDesde.Name = "dtpDesde";
+            this.dtpDesde.Size = new System.Drawing.Size(140, 20);
+            this.dtpDesde.TabIndex = 0;
             // 
             // frmReportes
             // 
@@ -157,9 +164,9 @@
             this.tabReportes.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOcupacion)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOcupacion)).EndInit();
             this.ResumeLayout(false);
 
         }
