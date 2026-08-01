@@ -1,4 +1,5 @@
-﻿using HotelZormat.Modelo;
+﻿// Cedula : 402-1937000-0
+using HotelZormat.Modelo;
 using HotelZormat.Negocio.Excepciones;
 using HotelZormat.Negocio.Servicios;
 using System;
@@ -48,6 +49,11 @@ namespace HotelZormat.UI
 
                 CargarGrids();
 
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (SqlException)
             {
@@ -142,6 +148,11 @@ namespace HotelZormat.UI
                 _idReservaSeleccionada = 0;
                 CargarGrids();
             }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             catch (HabitacionOcupadaException ex)
             {
                 MessageBox.Show(ex.Message, "Operación no permitida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -195,6 +206,11 @@ namespace HotelZormat.UI
                 frmFactura factView = new frmFactura();
                 factView.CargarFactura(factura);
                 factView.ShowDialog();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (InvalidOperationException ex)
             {

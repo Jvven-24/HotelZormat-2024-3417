@@ -1,4 +1,5 @@
-﻿using HotelZormat.Modelo;
+﻿// Cedula : 402-1937000-0
+using HotelZormat.Modelo;
 using HotelZormat.Negocio.Servicios;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,11 @@ namespace HotelZormat.UI
                 dtpHasta.Value = DateTime.Today;
 
                 CargarOcupacion();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (SqlException)
             {
@@ -98,6 +104,11 @@ namespace HotelZormat.UI
 
                 lblCantidadFacturas.Text = "Cantidad de facturas: " + cantidad;
                 lblIngresosTotales.Text = "Ingresos totales: " + ingresos.ToString("N2");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (ArgumentException ex)
             {

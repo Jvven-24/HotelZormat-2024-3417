@@ -1,4 +1,5 @@
-﻿using HotelZormat.Negocio;
+﻿// Cedula : 402-1937000-0
+using HotelZormat.Negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace HotelZormat.UI
 {
     public partial class FrmPrincipal : Form
     {
+        private ToolStripMenuItem _menuActivo;
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -20,7 +22,7 @@ namespace HotelZormat.UI
 
         private void huespedesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            MarcarMenuActivo(menuHuespedes);
             AbrirPantallas(new frmGestionHuespedes());
         }
 
@@ -41,31 +43,37 @@ namespace HotelZormat.UI
 
         private void menuDashboard_Click(object sender, EventArgs e)
         {
+           MarcarMenuActivo(menuDashboard);
             AbrirPantallas(new frmDashboard());
         }
 
         private void menuHabitaciones_Click(object sender, EventArgs e)
         {
+            MarcarMenuActivo(menuHabitaciones);
             AbrirPantallas(new frmGestionHabitaciones());
         }
 
         private void menuReservas_Click(object sender, EventArgs e)
         {
+            MarcarMenuActivo(menuReservas);
             AbrirPantallas(new frmGestionReservas());
         }
 
         private void menuCheckInOut_Click(object sender, EventArgs e)
         {
+            MarcarMenuActivo(menuCheckInOut);
            AbrirPantallas(new frmCheckInOut());
         }
 
         private void menuReportes_Click(object sender, EventArgs e)
         {
+            MarcarMenuActivo(menuReportes);
             AbrirPantallas(new frmReportes());
         }
 
         private void menuBitacora_Click(object sender, EventArgs e)
         {
+            MarcarMenuActivo(menuBitacora);
             AbrirPantallas(new frmBitacora());
         }
         private void AbrirPantallas(Form hijo)
@@ -92,6 +100,18 @@ namespace HotelZormat.UI
                 this.Close();
             }
 
+        }
+        private void MarcarMenuActivo(ToolStripMenuItem item)
+        {
+            if (_menuActivo != null)
+            {
+                _menuActivo.BackColor = SystemColors.MenuBar;
+                _menuActivo.ForeColor = SystemColors.MenuText;
+            }
+
+            item.BackColor = Color.SteelBlue;
+            item.ForeColor = Color.White;
+            _menuActivo = item;
         }
     }
 }

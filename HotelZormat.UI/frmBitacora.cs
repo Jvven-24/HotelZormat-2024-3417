@@ -1,4 +1,5 @@
-﻿using HotelZormat.Modelo;
+﻿// Cedula : 402-1937000-0
+using HotelZormat.Modelo;
 using HotelZormat.Negocio.Servicios;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,11 @@ namespace HotelZormat.UI
 
                 CargarGrid(_bitacoraService.ObtenerTodas());
             }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             catch (SqlException)
             {
                 MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
@@ -80,6 +86,11 @@ namespace HotelZormat.UI
             {
                 CargarGrid(_bitacoraService.ObtenerPorAccion(cboFiltroAccion.SelectedItem.ToString()));
             }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             catch (SqlException)
             {
                 MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
@@ -97,6 +108,11 @@ namespace HotelZormat.UI
             try
             {
                 CargarGrid(_bitacoraService.ObtenerTodas());
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (SqlException)
             {

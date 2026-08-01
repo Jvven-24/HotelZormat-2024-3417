@@ -1,4 +1,5 @@
-﻿using HotelZormat.Modelo;
+﻿// Cedula : 402-1937000-0
+using HotelZormat.Modelo;
 using HotelZormat.Negocio.Servicios;
 using System;
 using System.Collections.Generic;
@@ -62,6 +63,11 @@ namespace HotelZormat.UI
                     flpHabitaciones.Controls.Add(tarjeta);
                 }
             }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             catch (SqlException)
             {
                 MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
@@ -71,6 +77,7 @@ namespace HotelZormat.UI
             {
                 MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+           
         }
 
         private void btnRefrescar_Click(object sender, EventArgs e)
