@@ -29,7 +29,7 @@ La UI **no** referencia a Datos directamente — solo pasa por Negocio.
 ## Cómo restaurar la base de datos
 
 1. Abrir SSMS y conectarse a la instancia local (`.\SQLEXPRESS` o la que tengas configurada).
-2. Ejecutar el script completo `script_bd.sql` (raíz del repo). Crea la base `HotelZormatDB`, todas las tablas y los datos semilla (usuarios, 9 habitaciones, 2 huéspedes de prueba).
+2. Ejecutar el script completo `Cuero.sql` (raíz del repo). Crea la base `HotelZormatDB`, todas las tablas y los datos semilla (usuarios, 9 habitaciones, 2 huéspedes de prueba).
 3. Verificar con: `SELECT * FROM Habitaciones WHERE Piso = 3 ORDER BY Numero;` — debe devolver 4 filas.
 
 ## Configuración de conexión
