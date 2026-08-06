@@ -16,6 +16,8 @@ namespace HotelZormat.Datos.Repositorio
         Usuario BuscarPorId(int id);
         List<Usuario> ObtenerTodos();
         void Insertar(Usuario usuario);
+        void Actualizar(Usuario usuario);   
+        void Desactivar(int id);
     }
     public class UsuarioRepository : IUsuarioRepository
     {
@@ -106,6 +108,49 @@ namespace HotelZormat.Datos.Repositorio
                 cmd.Parameters.AddWithValue("@contrasena", usuario.Contrasena);
                 cmd.Parameters.AddWithValue("@nombreCompleto", usuario.NombreCompleto);
                 cmd.Parameters.AddWithValue("@rol", usuario.Rol);
+
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public void Actualizar(Usuario usuario)
+        {
+            using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
+            {
+                string sql;
+                if (!string.IsNullOrEmpty(usuario.Contrasena))
+                {
+                    sql = "UPDATE Usuarios SET NombreUsuario = @usuario, Contrasena = @contrasena, " +
+                          "NombreCompleto = @nombreCompleto, Rol = @rol WHERE Id = @id";
+                }
+                else
+                {
+                    sql = "UPDATE Usuarios SET NombreUsuario = @usuario, " +
+                          "NombreCompleto = @nombreCompleto, Rol = @rol WHERE Id = @id";
+                }
+
+                SqlCommand cmd = new SqlCommand(sql, conexion);
+                cmd.Parameters.AddWithValue("@usuario", usuario.NombreUsuario);
+                cmd.Parameters.AddWithValue("@nombreCompleto", usuario.NombreCompleto);
+                cmd.Parameters.AddWithValue("@rol", usuario.Rol);
+                cmd.Parameters.AddWithValue("@id", usuario.Id);
+                if (!string.IsNullOrEmpty(usuario.Contrasena))
+                {
+                    cmd.Parameters.AddWithValue("@contrasena", usuario.Contrasena);
+                }
+
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void Desactivar(int id)
+        {
+            using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
+            {
+                string sql = "UPDATE Usuarios SET Activo = 0 WHERE Id = @id";
+                SqlCommand cmd = new SqlCommand(sql, conexion);
+                cmd.Parameters.AddWithValue("@id", id);
 
                 conexion.Open();
                 cmd.ExecuteNonQuery();

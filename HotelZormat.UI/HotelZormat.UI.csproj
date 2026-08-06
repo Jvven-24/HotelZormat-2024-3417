@@ -92,6 +92,12 @@
     <Compile Include="frmGestionReservas.Designer.cs">
       <DependentUpon>frmGestionReservas.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGestionUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGestionUsuarios.Designer.cs">
+      <DependentUpon>frmGestionUsuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
