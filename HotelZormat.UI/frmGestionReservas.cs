@@ -32,6 +32,15 @@ namespace HotelZormat.UI
             _huespedService = new HuespedService();
             _habitacionService = new HabitacionService();
 
+            pnlFiltros.Resize += EstilosUI.RedondearEsquinas;
+            pnlGridCard.Resize += EstilosUI.RedondearEsquinas;
+            pnlCaptura.Resize += EstilosUI.RedondearEsquinas;
+            EstilosUI.AplicarEsquinasRedondeadas(pnlFiltros, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(pnlGridCard, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(pnlCaptura, 14);
+
+            dgvReservas.CellFormatting += EstilosUI.SubrayarFilaSeleccionada;
+            dgvReservas.SelectionChanged += EstilosUI.RefrescarSeleccion;
         }
 
         private void frmGestionReservas_Load(object sender, EventArgs e)

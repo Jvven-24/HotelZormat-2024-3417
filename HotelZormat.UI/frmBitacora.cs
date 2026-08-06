@@ -24,6 +24,14 @@ namespace HotelZormat.UI
             InitializeComponent();
             _bitacoraService = new BitacoraService();
             _usuarioService = new UsuarioService();
+
+            pnlFiltros.Resize += EstilosUI.RedondearEsquinas;
+            pnlGridCard.Resize += EstilosUI.RedondearEsquinas;
+            EstilosUI.AplicarEsquinasRedondeadas(pnlFiltros, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(pnlGridCard, 14);
+
+            dgvBitacora.CellFormatting += EstilosUI.SubrayarFilaSeleccionada;
+            dgvBitacora.SelectionChanged += EstilosUI.RefrescarSeleccion;
         }
 
         private void frmBitacora_Load(object sender, EventArgs e)

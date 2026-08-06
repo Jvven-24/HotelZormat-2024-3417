@@ -30,6 +30,14 @@ namespace HotelZormat.UI
             _huespedService = new HuespedService();
             _habitacionService = new HabitacionService();
             _facturaService = new FacturaService();
+
+            pnlFiltros.Resize += EstilosUI.RedondearEsquinas;
+            pnlGridCard.Resize += EstilosUI.RedondearEsquinas;
+            EstilosUI.AplicarEsquinasRedondeadas(pnlFiltros, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(pnlGridCard, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(tarjetaOcupadas, 10);
+            EstilosUI.AplicarEsquinasRedondeadas(tarjetaFacturas, 10);
+            EstilosUI.AplicarEsquinasRedondeadas(tarjetaIngresos, 10);
         }
 
         private void frmReportes_Load(object sender, EventArgs e)
@@ -81,7 +89,7 @@ namespace HotelZormat.UI
                     estadia.FechaCheckInReal.ToString("dd/MM/yyyy HH:mm"));
             }
 
-            lblTotalOcupadas.Text = "Total ocupadas hoy: " + activas.Count;
+            lblTotalOcupadas.Text = activas.Count.ToString();
         }
 
         private void btnConsultar_Click(object sender, EventArgs e)
@@ -104,8 +112,8 @@ namespace HotelZormat.UI
                 int cantidad = _facturaService.ContarFacturasPorRango(desde, hasta);
                 decimal ingresos = _facturaService.ObtenerIngresosPorRango(desde, hasta);
 
-                lblCantidadFacturas.Text = "Cantidad de facturas: " + cantidad;
-                lblIngresosTotales.Text = "Ingresos totales: " + ingresos.ToString("N2");
+                lblCantidadFacturas.Text = cantidad.ToString();
+                lblIngresosTotales.Text = ingresos.ToString("N2");
             }
             catch (FormatException)
             {

@@ -29,6 +29,8 @@ namespace HotelZormat.UI
             _reservaService = new ReservaService();
             _huespedService = new HuespedService();
             _habitacionService = new HabitacionService();
+
+            EstilosUI.AplicarEsquinasRedondeadas(pnlReceipt, 18);
         }
         public void CargarFactura(Factura factura)
         {

@@ -25,6 +25,16 @@ namespace HotelZormat.UI
             _huespedService = new HuespedService();
             txtTelefono.KeyPress += ValidacionesTexto.SoloDigitos_KeyPress;
             txtNumeroDocumento.KeyPress += txtNumeroDocumento_KeyPress;
+
+            pnlFiltros.Resize += EstilosUI.RedondearEsquinas;
+            pnlGridCard.Resize += EstilosUI.RedondearEsquinas;
+            pnlCaptura.Resize += EstilosUI.RedondearEsquinas;
+            EstilosUI.AplicarEsquinasRedondeadas(pnlFiltros, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(pnlGridCard, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(pnlCaptura, 14);
+
+            dgvHuespedes.CellFormatting += EstilosUI.SubrayarFilaSeleccionada;
+            dgvHuespedes.SelectionChanged += EstilosUI.RefrescarSeleccion;
         }
 
         private void frmGestionHuespedes_Load(object sender, EventArgs e)

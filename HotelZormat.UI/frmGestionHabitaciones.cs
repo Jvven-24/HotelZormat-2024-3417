@@ -27,16 +27,26 @@ namespace HotelZormat.UI
             txtPiso.KeyPress += ValidacionesTexto.SoloDigitos_KeyPress;
             txtCapacidad.KeyPress += ValidacionesTexto.SoloDigitos_KeyPress;
             txtTarifa.KeyPress += ValidacionesTexto.SoloDecimal_KeyPress;
+
+            pnlFiltros.Resize += EstilosUI.RedondearEsquinas;
+            pnlGridCard.Resize += EstilosUI.RedondearEsquinas;
+            pnlCaptura.Resize += EstilosUI.RedondearEsquinas;
+            EstilosUI.AplicarEsquinasRedondeadas(pnlFiltros, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(pnlGridCard, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(pnlCaptura, 14);
+
+            dgvHabitaciones.CellFormatting += EstilosUI.SubrayarFilaSeleccionada;
+            dgvHabitaciones.SelectionChanged += EstilosUI.RefrescarSeleccion;
         }
-        private Color ObtenerColorPorEstado(string estado)       
+        private Color ObtenerColorPorEstado(string estado)
         {
             switch (estado)
             {
-                case "Disponible": return Color.Green;
-                case "Ocupada": return Color.Red;
-                case "Reservada": return Color.Orange;
-                case "Limpieza": return Color.RoyalBlue;
-                default: return Color.Gray;
+                case "Disponible": return Color.FromArgb(47, 143, 99);
+                case "Ocupada": return Color.FromArgb(193, 68, 60);
+                case "Reservada": return Color.FromArgb(201, 146, 47);
+                case "Limpieza": return Color.FromArgb(79, 126, 168);
+                default: return Color.FromArgb(121, 112, 93);
             }
         }
 
