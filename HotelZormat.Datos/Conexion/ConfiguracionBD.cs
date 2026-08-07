@@ -10,6 +10,7 @@ namespace HotelZormat.Datos.Conexion
 {
     public static class ConfiguracionBD
     {
+        // TODO: ObtenerConnectionString - Sin parámetros, lee el connection string desde App.config y lo retorna como string
         public static string ObtenerConnectionString()
         {
             return ConfigurationManager.ConnectionStrings["HotelZormatDB"].ConnectionString;

@@ -19,6 +19,7 @@ namespace HotelZormat.Datos.Repositorio
     }
     public class FacturaRepository : IFacturaRepository
     {
+        // TODO: ObtenerSiguienteNCF - Sin parámetros, hace UPDATE para incrementar SecuenciaNCF y SELECT para leerlo, retorna el NCF armado (ej. B0200000001)
         public string ObtenerSiguienteNCF()
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
@@ -37,6 +38,7 @@ namespace HotelZormat.Datos.Repositorio
             }
         }
 
+        // TODO: Insertar - Recibe una Factura, ejecuta INSERT parametrizado contra la tabla Facturas
         public void Insertar(Factura factura)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
@@ -56,6 +58,7 @@ namespace HotelZormat.Datos.Repositorio
             }
         }
 
+        // TODO: ObtenerIngresosPorRango - Recibe desde y hasta (DateTime), ejecuta SUM parametrizado sobre Total y retorna decimal
         public decimal ObtenerIngresosPorRango(DateTime desde, DateTime hasta)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
@@ -69,6 +72,7 @@ namespace HotelZormat.Datos.Repositorio
                 return (decimal)cmd.ExecuteScalar();
             }
         }
+        // TODO: ContarFacturasPorRango - Recibe desde y hasta (DateTime), ejecuta COUNT parametrizado y retorna int
         public int ContarFacturasPorRango(DateTime desde, DateTime hasta)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))

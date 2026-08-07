@@ -19,6 +19,7 @@ namespace HotelZormat.Negocio.Servicios
             _bitacoraRepository = new BitacoraRepository();
         }
 
+        // TODO: IniciarSesion - Recibe nombreUsuario y contrasena (string), compara GenerarHash(contrasena) contra el hash guardado en BD, registra el login en Bitácora, retorna el Usuario o null
         public Usuario IniciarSesion(string nombreUsuario, string contrasena)
         {
             if (string.IsNullOrWhiteSpace(nombreUsuario) || string.IsNullOrWhiteSpace(contrasena))
@@ -53,6 +54,7 @@ namespace HotelZormat.Negocio.Servicios
             return _usuarioRepository.ObtenerTodos();
         }
 
+        // TODO: Guardar - Recibe un Usuario y contrasenaPlano (string), valida datos y nombre único, hashea la contraseña (obligatoria si es nuevo, opcional si edita) y hace Insertar o Actualizar
         public void Guardar(Usuario usuario, string contrasenaPlano)
         {
             if (string.IsNullOrWhiteSpace(usuario.NombreUsuario))
@@ -107,6 +109,7 @@ namespace HotelZormat.Negocio.Servicios
             }
         }
 
+        // TODO: Eliminar - Recibe id (int), bloquea que el usuario se desactive a sí mismo, si no llama Desactivar (baja lógica)
         public void Eliminar(int id)
         {
             if (SesionActual.UsuarioLogueado != null && SesionActual.UsuarioLogueado.Id == id)
@@ -117,6 +120,7 @@ namespace HotelZormat.Negocio.Servicios
             _usuarioRepository.Desactivar(id);
         }
 
+        // TODO: GenerarHash - Recibe textoPlano (string), calcula SHA-256 con foreach para armar el string hexadecimal, retorna el hash de 64 caracteres
         private string GenerarHash(string textoPlano)
         {
             using (SHA256 sha256 = SHA256.Create())

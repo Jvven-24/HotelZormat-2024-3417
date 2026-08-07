@@ -34,6 +34,7 @@ namespace HotelZormat.UI
             dgvBitacora.SelectionChanged += EstilosUI.RefrescarSeleccion;
         }
 
+        // TODO: frmBitacora_Load - Sin parámetros, arma columnas del grid, llena cboFiltroAccion con foreach y carga todos los registros (solo Administrador entra aquí, ver FrmPrincipal_Load)
         private void frmBitacora_Load(object sender, EventArgs e)
         {
             try
@@ -69,6 +70,7 @@ namespace HotelZormat.UI
             }
 
         }
+        // TODO: CargarGrid - Recibe List<RegistroBitacora>, limpia el grid y lo llena con foreach (busca el usuario por cada registro)
         private void CargarGrid(List<RegistroBitacora> registros)
         {
             dgvBitacora.Rows.Clear();
@@ -81,6 +83,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: btnFiltrar_Click - Llama BitacoraService.ObtenerPorAccion con lo elegido en cboFiltroAccion; catch FormatException, SqlException, Exception
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
             if (cboFiltroAccion.SelectedItem == null)
@@ -110,6 +113,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: btnVerTodas_Click - Limpia el filtro y llama BitacoraService.ObtenerTodas; catch FormatException, SqlException, Exception
         private void btnVerTodas_Click(object sender, EventArgs e)
         {
             cboFiltroAccion.SelectedIndex = -1;

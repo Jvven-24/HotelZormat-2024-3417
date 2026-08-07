@@ -1,3 +1,4 @@
+// Cedula : 402-1937000-0
 using HotelZormat.Modelo;
 using HotelZormat.Negocio.Servicios;
 using System;
@@ -27,6 +28,7 @@ namespace HotelZormat.UI
             dgvUsuarios.SelectionChanged += EstilosUI.RefrescarSeleccion;
         }
 
+        // TODO: frmGestionUsuarios_Load - Sin parámetros, arma columnas del grid, llena cboRol con foreach y carga el grid
         private void frmGestionUsuarios_Load(object sender, EventArgs e)
         {
             try
@@ -56,6 +58,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: CargarGrid - Recibe List<Usuario>, limpia el grid y lo llena con foreach
         private void CargarGrid(List<Usuario> lista)
         {
             dgvUsuarios.Rows.Clear();
@@ -78,6 +81,7 @@ namespace HotelZormat.UI
             lblAyudaContrasena.Text = "Dejar vacío para no cambiar la contraseña";
         }
 
+        // TODO: btnGuardar_Click - Arma un Usuario desde los campos y llama UsuarioService.Guardar (hash de contraseña incluido); catch ArgumentException, SqlException, Exception, con finally
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (!ValidacionesTexto.ValidarComboRequerido(cboRol, errorProvider1, "Selecciona un rol"))
@@ -123,6 +127,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: btnEliminar_Click - Pide confirmación y llama UsuarioService.Eliminar (baja lógica); catch ArgumentException, SqlException, Exception
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (_idSeleccionado == 0)

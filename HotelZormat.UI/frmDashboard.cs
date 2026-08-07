@@ -39,6 +39,7 @@ namespace HotelZormat.UI
             CargarTablero();
         }
 
+        // TODO: ObtenerColorPorEstado - Recibe estado (string), switch que retorna el Color de la franja del tablero
         private Color ObtenerColorPorEstado(string estado)
         {
             switch (estado)
@@ -51,6 +52,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: CargarTablero - Sin parámetros, obtiene todas las habitaciones, cuenta por estado con foreach+switch, arma las tarjetas KPI y las tarjetas del tablero
         public void CargarTablero()
         {
             try

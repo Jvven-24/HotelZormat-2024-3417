@@ -43,6 +43,7 @@ namespace HotelZormat.UI
             dgvReservas.SelectionChanged += EstilosUI.RefrescarSeleccion;
         }
 
+        // TODO: frmGestionReservas_Load - Sin parámetros, arma columnas del grid, llena cboTemporada con foreach y carga combos+grid
         private void frmGestionReservas_Load(object sender, EventArgs e)
         {
             try
@@ -75,6 +76,7 @@ namespace HotelZormat.UI
             }
 
         }
+        // TODO: CargarCombosYGrid - Sin parámetros, llena cboHuesped y cboHabitacion (solo disponibles) con dos foreach, luego carga el grid
         private void CargarCombosYGrid()
         {
             cboHuesped.Items.Clear();
@@ -98,6 +100,7 @@ namespace HotelZormat.UI
             CargarGrid(_reservaService.ObtenerTodas());
         }
 
+        // TODO: CargarGrid - Recibe List<Reserva>, limpia el grid y lo llena con foreach (busca huésped y habitación por cada fila)
         private void CargarGrid(List<Reserva> lista)
         {
             dgvReservas.Rows.Clear();
@@ -114,6 +117,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: RecalcularNochesYMonto - Sin parámetros, usa ReservaService.CalcularNoches y CalcularTarifaConTemporada para recalcular lblNoches/lblMonto en vivo
         private void RecalcularNochesYMonto()
         {
             try
@@ -159,6 +163,7 @@ namespace HotelZormat.UI
             RecalcularNochesYMonto();
         }
 
+        // TODO: btnCrear_Click - Arma una Reserva y llama ReservaService.CrearReserva; catch en orden HabitacionOcupadaException, ArgumentException, FormatException, SqlException, Exception, con finally
         private void btnCrear_Click(object sender, EventArgs e)
         {
 
@@ -225,6 +230,7 @@ namespace HotelZormat.UI
             _idReservaSeleccionada = Convert.ToInt32(dgvReservas.Rows[e.RowIndex].Cells["colId"].Value);
         }
 
+        // TODO: btnConfirmar_Click - Pide confirmación y llama ReservaService.ConfirmarReserva; catch ArgumentException, SqlException, Exception
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             if (_idReservaSeleccionada == 0)
@@ -262,6 +268,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: btnCancelar_Click - Pide confirmación y llama ReservaService.CancelarReserva; catch ArgumentException, SqlException, Exception
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             if (_idReservaSeleccionada == 0)
@@ -299,6 +306,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: btnProximas_Click - Llama ReservaService.ObtenerProximas(7) y recarga el grid; catch SqlException, Exception
         private void btnProximas_Click(object sender, EventArgs e)
         {
             try

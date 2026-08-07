@@ -185,6 +185,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: btnIngresar_Click - Llama a UsuarioService.IniciarSesion; catch en orden FormatException, SqlException, Exception genérico; si el login es válido abre FrmPrincipal
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             {

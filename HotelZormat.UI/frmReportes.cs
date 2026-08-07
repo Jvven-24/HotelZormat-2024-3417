@@ -40,6 +40,7 @@ namespace HotelZormat.UI
             EstilosUI.AplicarEsquinasRedondeadas(tarjetaIngresos, 10);
         }
 
+        // TODO: frmReportes_Load - Sin parámetros, arma columnas de dgvOcupacion, fija las fechas de hoy y llama CargarOcupacion
         private void frmReportes_Load(object sender, EventArgs e)
         {
             try
@@ -69,6 +70,7 @@ namespace HotelZormat.UI
                 MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        // TODO: CargarOcupacion - Sin parámetros, recorre EstadiaService.ObtenerActivas con foreach, arma el grid y el conteo (reporte 1: ocupación del día)
         private void CargarOcupacion()
         {
             dgvOcupacion.Rows.Clear();
@@ -92,6 +94,7 @@ namespace HotelZormat.UI
             lblTotalOcupadas.Text = activas.Count.ToString();
         }
 
+        // TODO: btnConsultar_Click - Valida el rango de fechas y llama FacturaService.ContarFacturasPorRango/ObtenerIngresosPorRango (reporte 2: ingresos por rango); catch FormatException, ArgumentException, SqlException, Exception, con finally
         private void btnConsultar_Click(object sender, EventArgs e)
         {
 

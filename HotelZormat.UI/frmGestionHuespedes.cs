@@ -37,6 +37,7 @@ namespace HotelZormat.UI
             dgvHuespedes.SelectionChanged += EstilosUI.RefrescarSeleccion;
         }
 
+        // TODO: frmGestionHuespedes_Load - Sin parámetros, arma columnas del grid, llena cboTipoDocumento con foreach y carga el grid completo
         private void frmGestionHuespedes_Load(object sender, EventArgs e)
         {
             try
@@ -69,6 +70,7 @@ namespace HotelZormat.UI
             }
 
         }
+        // TODO: CargarGrid - Recibe List<Huesped>, limpia el grid y lo llena con foreach
         private void CargarGrid(List<Huesped> lista)
         {
             dgvHuespedes.Rows.Clear();
@@ -78,6 +80,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: btnBuscar_Click - Recibe el texto de txtBuscar, llama HuespedService.Buscar (o ObtenerTodos si está vacío); catch SqlException, Exception
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             try
@@ -115,6 +118,7 @@ namespace HotelZormat.UI
             txtEmail.Text = fila.Cells["colEmail"].Value?.ToString();
         }
 
+        // TODO: cboTipoDocumento_SelectedIndexChanged - Switch sobre Cedula/Pasaporte que ajusta MaxLength y el texto de ayuda de txtNumeroDocumento
         private void cboTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (cboTipoDocumento.SelectedItem?.ToString())
@@ -142,6 +146,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: btnGuardar_Click - Arma un Huesped desde los campos y llama HuespedService.Guardar; catch en orden ArgumentException, SqlException, Exception, con finally
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (!ValidacionesTexto.ValidarComboRequerido(cboTipoDocumento, errorProvider1, "Selecciona el tipo de documento"))
@@ -190,6 +195,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: btnEliminar_Click - Pide confirmación y llama HuespedService.Eliminar; catch específico de SqlException 547 (FK con reservas) antes del SqlException genérico
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (_idSeleccionado == 0)
@@ -244,6 +250,7 @@ namespace HotelZormat.UI
             lblAyuda.Text = "";
         }
 
+        // TODO: btnHistorial_Click - Llama EstadiaService.ObtenerHistorialPorHuesped y arma el texto con foreach; catch SqlException, Exception
         private void btnHistorial_Click(object sender, EventArgs e)
         {
             try

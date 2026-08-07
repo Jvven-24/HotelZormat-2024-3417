@@ -21,6 +21,7 @@ namespace HotelZormat.Datos.Repositorio
     }
     public class UsuarioRepository : IUsuarioRepository
     {
+        // TODO: BuscarPorNombreUsuario - Recibe nombreUsuario (string), busca parametrizado (solo Activo=1) y retorna el Usuario o null; usado por el login
         public Usuario BuscarPorNombreUsuario(string nombreUsuario)
         {
             Usuario usuario = null;
@@ -46,6 +47,7 @@ namespace HotelZormat.Datos.Repositorio
             }
             return usuario;
         }
+        // TODO: BuscarPorId - Recibe id (int), busca parametrizado y retorna el Usuario o null
         public Usuario BuscarPorId(int id)
         {
             Usuario usuario = null;
@@ -72,6 +74,7 @@ namespace HotelZormat.Datos.Repositorio
             return usuario;
 
         }
+        // TODO: ObtenerTodos - Sin parámetros, ejecuta SELECT con SqlDataReader (while) y retorna List<Usuario>
         public List<Usuario> ObtenerTodos()
         {
             List<Usuario> lista = new List<Usuario>();
@@ -97,6 +100,7 @@ namespace HotelZormat.Datos.Repositorio
             return lista;
         }
 
+        // TODO: Insertar - Recibe un Usuario (con Contrasena ya hasheada por el Service), ejecuta INSERT parametrizado con Activo=1
         public void Insertar(Usuario usuario)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
@@ -113,6 +117,7 @@ namespace HotelZormat.Datos.Repositorio
                 cmd.ExecuteNonQuery();
             }
         }
+        // TODO: Actualizar - Recibe un Usuario, arma el UPDATE distinto según si viene o no una contraseña nueva, todo parametrizado
         public void Actualizar(Usuario usuario)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
@@ -144,6 +149,7 @@ namespace HotelZormat.Datos.Repositorio
             }
         }
 
+        // TODO: Desactivar - Recibe id (int), ejecuta UPDATE Activo=0 (baja lógica, nunca DELETE físico)
         public void Desactivar(int id)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))

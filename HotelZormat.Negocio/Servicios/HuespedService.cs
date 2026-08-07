@@ -17,6 +17,7 @@ namespace HotelZormat.Negocio.Servicios
         {
             _repo = new HuespedRepository();
         }
+        // TODO: ValidarHuesped - Recibe un Huesped, valida campos con foreach para revisar dígito por dígito la cédula (11 dígitos exactos), retorna List<string> de errores
         public List<string> ValidarHuesped(Huesped h)
         {
             var errores = new List<string>();
@@ -69,6 +70,7 @@ namespace HotelZormat.Negocio.Servicios
             return errores;
         }
 
+        // TODO: Guardar - Recibe un Huesped, llama ValidarHuesped y lanza ArgumentException si hay errores, si no decide Insertar o Actualizar
         public void Guardar(Huesped h)
         {
             List<string> errores = ValidarHuesped(h);

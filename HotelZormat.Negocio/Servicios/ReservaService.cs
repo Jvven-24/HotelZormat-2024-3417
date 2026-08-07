@@ -27,6 +27,7 @@ namespace HotelZormat.Negocio.Servicios
             return tipo == "Sencilla" || tipo == "Doble" || tipo == "Suite";
         }
 
+        // TODO: ObtenerDescuentoPorTemporada - Recibe temporada (string), switch que retorna el factor de descuento/recargo (Alta 0, Media 0.10, Baja 0.20, Pico -0.15)
         public decimal ObtenerDescuentoPorTemporada(string temporada)
         {
             decimal factor;
@@ -56,6 +57,7 @@ namespace HotelZormat.Negocio.Servicios
             return factor;
         }
 
+        // TODO: GenerarLineasFactura - Recibe noches (int) y tarifaPorNoche (decimal), arma una línea por noche con un for, retorna List<string>
         public List<string> GenerarLineasFactura(int noches, decimal tarifaPorNoche)
         {
             var lineas = new List<string>();
@@ -74,6 +76,7 @@ namespace HotelZormat.Negocio.Servicios
             return lineas;
         }
 
+        // TODO: BuscarPrimeraDisponible - Recibe una List<Habitacion> y capacidadMinima (int), recorre con foreach+break y retorna la primera disponible con esa capacidad
         public Habitacion BuscarPrimeraDisponible(List<Habitacion> habitaciones, int capacidadMinima)
         {
             if (habitaciones == null)
@@ -95,6 +98,7 @@ namespace HotelZormat.Negocio.Servicios
             return encontrada;
         }
 
+        // TODO: ValidarReserva - Recibe huesped, tipoHabitacion, noches, temporada y cantidadHuespedes, valida todo (incluye try/catch interno para la temporada) y retorna List<string> de errores
         public List<string> ValidarReserva(Huesped huesped, string tipoHabitacion, int noches, string temporada, int cantidadHuespedes)
         {
             var errores = new List<string>();
@@ -138,6 +142,7 @@ namespace HotelZormat.Negocio.Servicios
 
             return errores;
         }
+        // TODO: CalcularTarifaConTemporada - Recibe tarifaBase (decimal) y temporada (string), switch Alta/Media/Baja con el % de descuento, retorna decimal
         public decimal CalcularTarifaConTemporada(decimal tarifaBase, string temporada)
         {
             decimal descuento;
@@ -151,6 +156,7 @@ namespace HotelZormat.Negocio.Servicios
             return tarifaBase * (1 - descuento);
         }
 
+        // TODO: CalcularNoches - Recibe checkIn y checkOut (DateTime), valida que checkOut > checkIn (lanza ArgumentException si no), retorna la cantidad de noches (int)
         public int CalcularNoches(DateTime checkIn, DateTime checkOut)
         {
             if (checkOut <= checkIn)
@@ -165,11 +171,13 @@ namespace HotelZormat.Negocio.Servicios
             return _repo.ObtenerTodas();
         }
 
+        // TODO: ObtenerProximas - Recibe dias (int), delega en el repositorio y retorna List<Reserva> confirmadas en ese rango
         public List<Reserva> ObtenerProximas(int dias)
         {
             return _repo.ObtenerProximas(dias);
         }
 
+        // TODO: CrearReserva - Recibe una Reserva, valida fecha/habitación, lanza HabitacionOcupadaException si aplica, calcula noches y monto, la guarda en estado Pendiente
         public void CrearReserva(Reserva r)
         {
             if (r.FechaCheckIn.Date < DateTime.Today)
@@ -195,6 +203,7 @@ namespace HotelZormat.Negocio.Servicios
             _repo.Insertar(r);
         }
 
+        // TODO: ConfirmarReserva - Recibe reservaId (int), cambia la reserva a Confirmada y la habitación a Reservada
         public void ConfirmarReserva(int reservaId)
         {
             Reserva r = _repo.BuscarPorId(reservaId);
@@ -207,6 +216,7 @@ namespace HotelZormat.Negocio.Servicios
             _habitacionRepo.CambiarEstado(r.HabitacionNumero, "Reservada");
         }
 
+        // TODO: CancelarReserva - Recibe reservaId (int), cambia la reserva a Cancelada y libera la habitación a Disponible si estaba Reservada
         public void CancelarReserva(int reservaId)
         {
             Reserva r = _repo.BuscarPorId(reservaId);

@@ -18,6 +18,7 @@ namespace HotelZormat.Datos.Repositorio
    
     public class BitacoraRepository : IBitacoraRepository
     {
+        // TODO: Registrar - Recibe usuarioId (int), accion (string) y detalle (string), ejecuta INSERT parametrizado en Bitacora para auditar la acción
         public void Registrar(int usuarioId, string accion, string detalle)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
@@ -34,6 +35,7 @@ namespace HotelZormat.Datos.Repositorio
                 cmd.ExecuteNonQuery();                                      
             }
         }
+        // TODO: ObtenerTodas - Sin parámetros, ejecuta SELECT ordenado por FechaHora DESC con SqlDataReader, retorna List<RegistroBitacora>
         public List<RegistroBitacora> ObtenerTodas()
         {
             List<RegistroBitacora> registros = new List<RegistroBitacora>();

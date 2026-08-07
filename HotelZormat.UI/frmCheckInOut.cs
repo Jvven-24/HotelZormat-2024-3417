@@ -43,6 +43,7 @@ namespace HotelZormat.UI
             dgvEstadiasActivas.SelectionChanged += EstilosUI.RefrescarSeleccion;
         }
 
+        // TODO: frmCheckInOut_Load - Sin parámetros, arma columnas de los dos grids y llama CargarGrids
         private void frmCheckInOut_Load(object sender, EventArgs e)
         {
             try
@@ -85,6 +86,7 @@ namespace HotelZormat.UI
             CargarGridEstadias();
         }
 
+        // TODO: CargarGridReservas - Sin parámetros, recorre ReservaService.ObtenerTodas con foreach y filtra las que están Confirmada
         private void CargarGridReservas()
         {
             dgvReservasConfirmadas.Rows.Clear();
@@ -100,6 +102,7 @@ namespace HotelZormat.UI
             }
 
         }
+        // TODO: CargarGridEstadias - Sin parámetros, recorre EstadiaService.ObtenerActivas con foreach y calcula las noches transcurridas
         private void CargarGridEstadias()
         {
             dgvEstadiasActivas.Rows.Clear();
@@ -136,6 +139,7 @@ namespace HotelZormat.UI
 
         }
 
+        // TODO: btnCheckIn_Click - Llama EstadiaService.HacerCheckIn; catch en orden FormatException, HabitacionOcupadaException, InvalidOperationException, ArgumentException, SqlException, Exception, con finally
         private void btnCheckIn_Click(object sender, EventArgs e)
         {
             if (_idReservaSeleccionada == 0)
@@ -195,6 +199,7 @@ namespace HotelZormat.UI
 
         }
 
+        // TODO: btnCheckOut_Click - Llama EstadiaService.HacerCheckOut y abre frmFactura con el resultado; catch FormatException, InvalidOperationException, ArgumentException, SqlException, Exception, con finally
         private void btnCheckOut_Click(object sender, EventArgs e)
         {
             if (_idEstadiaSeleccionada == 0)

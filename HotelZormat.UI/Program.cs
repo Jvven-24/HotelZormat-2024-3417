@@ -12,6 +12,7 @@ namespace HotelZormat.UI
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        // TODO: Main - Punto de entrada de la aplicación, habilita estilos visuales y arranca con frmLogin
         [STAThread]
         static void Main()
         {

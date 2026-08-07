@@ -25,6 +25,7 @@ namespace HotelZormat.Datos.Repositorio
 
     public class HabitacionRepository : IHabitacionRepository
     {
+        // TODO: ObtenerTodas - Sin parámetros, ejecuta SELECT con SqlDataReader y arma la lista con un while(reader.Read()), retorna List<Habitacion>
         public List<Habitacion> ObtenerTodas()
         {
             List<Habitacion> habitaciones = new List<Habitacion>();
@@ -50,6 +51,7 @@ namespace HotelZormat.Datos.Repositorio
             return habitaciones;
         }
 
+        // TODO: ObtenerPorFiltro - Recibe piso (int?) y estado (string), arma un SELECT parametrizado con @piso/@estado (null-check manual con DBNull), retorna List<Habitacion> filtrada
         public List<Habitacion> ObtenerPorFiltro(int? piso, string estado)
         {
             List<Habitacion> habitaciones = new List<Habitacion>();
@@ -78,6 +80,7 @@ namespace HotelZormat.Datos.Repositorio
             return habitaciones;
         }
 
+        // TODO: BuscarPorNumero - Recibe numero (int), busca con SqlCommand parametrizado (@numero) y retorna la Habitacion o null
         public Habitacion BuscarPorNumero(int numero)
         {
             Habitacion h = null;
@@ -103,6 +106,7 @@ namespace HotelZormat.Datos.Repositorio
             return h;
         }
 
+        // TODO: Insertar - Recibe una Habitacion, ejecuta INSERT parametrizado (@n, @t, @p, @e, @c, @tarifa) contra la tabla Habitaciones
         public void Insertar(Habitacion habitacion)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
@@ -122,6 +126,7 @@ namespace HotelZormat.Datos.Repositorio
             }
         }
 
+        // TODO: Actualizar - Recibe una Habitacion, ejecuta UPDATE parametrizado y lanza Exception si ExecuteNonQuery afecta 0 filas
         public void Actualizar(Habitacion habitacion)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
@@ -144,6 +149,7 @@ namespace HotelZormat.Datos.Repositorio
             }
         }
 
+        // TODO: Eliminar - Recibe numero (int), ejecuta DELETE parametrizado sobre Habitaciones
         public void Eliminar(int numero)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
@@ -157,6 +163,7 @@ namespace HotelZormat.Datos.Repositorio
             }
         }
 
+        // TODO: CambiarEstado - Recibe numero (int) y nuevoEstado (string), ejecuta UPDATE parametrizado del campo Estado
         public void CambiarEstado(int numero, string nuevoEstado)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))

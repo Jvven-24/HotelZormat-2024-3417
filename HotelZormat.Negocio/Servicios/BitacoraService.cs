@@ -23,6 +23,7 @@ namespace HotelZormat.Negocio.Servicios
             return _repo.ObtenerTodas();
         }
 
+        // TODO: ObtenerPorAccion - Recibe accion (string), recorre con foreach la lista completa y arma List<RegistroBitacora> solo con los que coinciden
         public List<RegistroBitacora> ObtenerPorAccion(string accion)
         {
             List<RegistroBitacora> resultado = new List<RegistroBitacora>();

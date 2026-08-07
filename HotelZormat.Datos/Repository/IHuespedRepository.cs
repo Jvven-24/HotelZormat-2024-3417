@@ -22,6 +22,7 @@ namespace HotelZormat.Datos.Repositorio
 
     public class HuespedRepository : IHuespedRepository
     {
+        // TODO: ObtenerTodos - Sin parámetros, ejecuta SELECT con SqlDataReader (while) y retorna List<Huesped> ordenada por apellido/nombre
         public List<Huesped> ObtenerTodos()
         {
             List<Huesped> huespedes = new List<Huesped>();
@@ -41,6 +42,7 @@ namespace HotelZormat.Datos.Repositorio
             return huespedes;
         }
 
+        // TODO: BuscarPorId - Recibe id (int), busca parametrizado (@id) y retorna el Huesped o null
         public Huesped BuscarPorId(int id)
         {
             Huesped h = null;
@@ -61,6 +63,7 @@ namespace HotelZormat.Datos.Repositorio
             return h;
         }
 
+        // TODO: Buscar - Recibe textoCedulaONombre (string), ejecuta SELECT con LIKE @texto sobre NumeroDocumento/Nombre/Apellido, retorna List<Huesped>
         public List<Huesped> Buscar(string textoCedulaONombre)
         {
             List<Huesped> huespedes = new List<Huesped>();
@@ -82,6 +85,7 @@ namespace HotelZormat.Datos.Repositorio
             return huespedes;
         }
 
+        // TODO: Insertar - Recibe un Huesped, ejecuta INSERT parametrizado contra la tabla Huespedes (Telefono/Email con DBNull si vienen vacíos)
         public void Insertar(Huesped huesped)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
@@ -102,6 +106,7 @@ namespace HotelZormat.Datos.Repositorio
             }
         }
 
+        // TODO: Actualizar - Recibe un Huesped, ejecuta UPDATE parametrizado y lanza Exception si no afectó ninguna fila
         public void Actualizar(Huesped huesped)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
@@ -128,6 +133,7 @@ namespace HotelZormat.Datos.Repositorio
             }
         }
 
+        // TODO: Eliminar - Recibe id (int), ejecuta DELETE parametrizado sobre Huespedes
         public void Eliminar(int id)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))

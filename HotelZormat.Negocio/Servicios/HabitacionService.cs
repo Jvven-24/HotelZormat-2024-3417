@@ -34,6 +34,7 @@ namespace HotelZormat.Negocio.Servicios
             return _repo.BuscarPorNumero(numero);
         }
 
+        // TODO: Guardar - Recibe una Habitacion, valida los campos, decide Insertar o Actualizar según exista el número, lanza HabitacionOcupadaException si intenta pasar de Ocupada a Disponible directo
         public void Guardar(Habitacion h)
         {
             if (h.Numero <= 0)                                              
@@ -70,6 +71,7 @@ namespace HotelZormat.Negocio.Servicios
             }
         }
 
+        // TODO: Eliminar - Recibe numero (int) y esAdministrador (bool), valida el permiso de rol y que la habitación no esté Ocupada antes de eliminar
         public void Eliminar(int numero, bool esAdministrador)
         {
             if (!esAdministrador)                                           

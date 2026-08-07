@@ -27,6 +27,7 @@ namespace HotelZormat.UI
             InitializeComponent();
         }
 
+        // TODO: FrmPrincipal_Load - Sin parámetros, oculta Bitácora y Usuarios del menú si SesionActual.EsAdministrador es false, y busca el MdiClient para pintarlo
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             if (!SesionActual.EsAdministrador)

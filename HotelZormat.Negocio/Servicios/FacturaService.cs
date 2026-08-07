@@ -17,6 +17,7 @@ namespace HotelZormat.Negocio.Servicios
             _repo = new FacturaRepository();
         }
 
+        // TODO: ContarFacturasPorRango - Recibe desde y hasta (DateTime), valida el rango y delega en el repositorio, retorna int
         public int ContarFacturasPorRango(DateTime desde, DateTime hasta)
         {
             if (hasta < desde)
@@ -26,6 +27,7 @@ namespace HotelZormat.Negocio.Servicios
             return _repo.ContarFacturasPorRango(desde, hasta);
         }
 
+        // TODO: ObtenerIngresosPorRango - Recibe desde y hasta (DateTime), valida el rango y delega en el repositorio, retorna decimal
         public decimal ObtenerIngresosPorRango(DateTime desde, DateTime hasta)
         {
             if (hasta < desde)
