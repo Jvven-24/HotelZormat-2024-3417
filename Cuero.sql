@@ -105,4 +105,7 @@ INSERT INTO Huespedes (Nombre, Apellido, TipoDocumento, NumeroDocumento, Naciona
 INSERT INTO SecuenciaNCF (Tipo, UltimoNumero) VALUES ('B02', 0);
 
 select * from Bitacora
+USE HotelZormatDB;
+UPDATE Usuarios SET Contrasena = '3b612c75a7b5048a435fb6ec81e52ff92d6d795a8b5a9c17070f6a63c97a53b2' WHERE NombreUsuario = 'admin';
+UPDATE Usuarios SET Contrasena = '0c01954c0f4f6bbda12d86eaecbd6a524225a0cad0fac52e6aaf4c237f7f9cbe' WHERE NombreUsuario = 'recepcion';
 
