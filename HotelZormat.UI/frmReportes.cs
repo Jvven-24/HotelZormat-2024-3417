@@ -1,4 +1,5 @@
-﻿using HotelZormat.Modelo;
+﻿// Cedula : 402-1937000-0
+using HotelZormat.Modelo;
 using HotelZormat.Negocio.Servicios;
 using System;
 using System.Collections.Generic;
@@ -29,8 +30,17 @@ namespace HotelZormat.UI
             _huespedService = new HuespedService();
             _habitacionService = new HabitacionService();
             _facturaService = new FacturaService();
+
+            pnlFiltros.Resize += EstilosUI.RedondearEsquinas;
+            pnlGridCard.Resize += EstilosUI.RedondearEsquinas;
+            EstilosUI.AplicarEsquinasRedondeadas(pnlFiltros, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(pnlGridCard, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(tarjetaOcupadas, 10);
+            EstilosUI.AplicarEsquinasRedondeadas(tarjetaFacturas, 10);
+            EstilosUI.AplicarEsquinasRedondeadas(tarjetaIngresos, 10);
         }
 
+        // TODO: frmReportes_Load - Sin parámetros, arma columnas de dgvOcupacion, fija las fechas de hoy y llama CargarOcupacion
         private void frmReportes_Load(object sender, EventArgs e)
         {
             try
@@ -45,6 +55,11 @@ namespace HotelZormat.UI
 
                 CargarOcupacion();
             }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             catch (SqlException)
             {
                 MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
@@ -55,6 +70,7 @@ namespace HotelZormat.UI
                 MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        // TODO: CargarOcupacion - Sin parámetros, recorre EstadiaService.ObtenerActivas con foreach, arma el grid y el conteo (reporte 1: ocupación del día)
         private void CargarOcupacion()
         {
             dgvOcupacion.Rows.Clear();
@@ -75,12 +91,15 @@ namespace HotelZormat.UI
                     estadia.FechaCheckInReal.ToString("dd/MM/yyyy HH:mm"));
             }
 
-            lblTotalOcupadas.Text = "Total ocupadas hoy: " + activas.Count;
+            lblTotalOcupadas.Text = activas.Count.ToString();
         }
 
+        // TODO: btnConsultar_Click - Valida el rango de fechas y llama FacturaService.ContarFacturasPorRango/ObtenerIngresosPorRango (reporte 2: ingresos por rango); catch FormatException, ArgumentException, SqlException, Exception, con finally
         private void btnConsultar_Click(object sender, EventArgs e)
         {
+
             btnConsultar.Enabled = false;
+            Cursor.Current = Cursors.WaitCursor;
             try
             {
                 if (dtpHasta.Value.Date < dtpDesde.Value.Date)
@@ -96,8 +115,13 @@ namespace HotelZormat.UI
                 int cantidad = _facturaService.ContarFacturasPorRango(desde, hasta);
                 decimal ingresos = _facturaService.ObtenerIngresosPorRango(desde, hasta);
 
-                lblCantidadFacturas.Text = "Cantidad de facturas: " + cantidad;
-                lblIngresosTotales.Text = "Ingresos totales: " + ingresos.ToString("N2");
+                lblCantidadFacturas.Text = cantidad.ToString();
+                lblIngresosTotales.Text = ingresos.ToString("N2");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (ArgumentException ex)
             {
@@ -114,6 +138,7 @@ namespace HotelZormat.UI
             }
             finally
             {
+                Cursor.Current = Cursors.Default;
                 btnConsultar.Enabled = true;
             }
         }

@@ -1,4 +1,5 @@
-﻿using HotelZormat.Modelo;
+﻿// Cedula : 402-1937000-0
+using HotelZormat.Modelo;
 using HotelZormat.Negocio.Servicios;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,19 @@ namespace HotelZormat.UI
             _huespedService = new HuespedService();
             txtTelefono.KeyPress += ValidacionesTexto.SoloDigitos_KeyPress;
             txtNumeroDocumento.KeyPress += txtNumeroDocumento_KeyPress;
+
+            pnlFiltros.Resize += EstilosUI.RedondearEsquinas;
+            pnlGridCard.Resize += EstilosUI.RedondearEsquinas;
+            pnlCaptura.Resize += EstilosUI.RedondearEsquinas;
+            EstilosUI.AplicarEsquinasRedondeadas(pnlFiltros, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(pnlGridCard, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(pnlCaptura, 14);
+
+            dgvHuespedes.CellFormatting += EstilosUI.SubrayarFilaSeleccionada;
+            dgvHuespedes.SelectionChanged += EstilosUI.RefrescarSeleccion;
         }
 
+        // TODO: frmGestionHuespedes_Load - Sin parámetros, arma columnas del grid, llena cboTipoDocumento con foreach y carga el grid completo
         private void frmGestionHuespedes_Load(object sender, EventArgs e)
         {
             try
@@ -58,6 +70,7 @@ namespace HotelZormat.UI
             }
 
         }
+        // TODO: CargarGrid - Recibe List<Huesped>, limpia el grid y lo llena con foreach
         private void CargarGrid(List<Huesped> lista)
         {
             dgvHuespedes.Rows.Clear();
@@ -67,6 +80,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: btnBuscar_Click - Recibe el texto de txtBuscar, llama HuespedService.Buscar (o ObtenerTodos si está vacío); catch SqlException, Exception
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             try
@@ -104,6 +118,7 @@ namespace HotelZormat.UI
             txtEmail.Text = fila.Cells["colEmail"].Value?.ToString();
         }
 
+        // TODO: cboTipoDocumento_SelectedIndexChanged - Switch sobre Cedula/Pasaporte que ajusta MaxLength y el texto de ayuda de txtNumeroDocumento
         private void cboTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (cboTipoDocumento.SelectedItem?.ToString())
@@ -131,6 +146,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: btnGuardar_Click - Arma un Huesped desde los campos y llama HuespedService.Guardar; catch en orden ArgumentException, SqlException, Exception, con finally
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (!ValidacionesTexto.ValidarComboRequerido(cboTipoDocumento, errorProvider1, "Selecciona el tipo de documento"))
@@ -179,6 +195,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: btnEliminar_Click - Pide confirmación y llama HuespedService.Eliminar; catch específico de SqlException 547 (FK con reservas) antes del SqlException genérico
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (_idSeleccionado == 0)
@@ -233,34 +250,50 @@ namespace HotelZormat.UI
             lblAyuda.Text = "";
         }
 
+        // TODO: btnHistorial_Click - Llama EstadiaService.ObtenerHistorialPorHuesped y arma el texto con foreach; catch SqlException, Exception
         private void btnHistorial_Click(object sender, EventArgs e)
         {
-            if (_idSeleccionado == 0)
+            try
             {
-                MessageBox.Show("Selecciona un huésped del listado", "Aviso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                if (_idSeleccionado == 0)
+                {
+                    MessageBox.Show("Selecciona un huésped del listado", "Aviso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            List<Estadia> historial = new EstadiaService().ObtenerHistorialPorHuesped(_idSeleccionado);
+                List<Estadia> historial = new EstadiaService().ObtenerHistorialPorHuesped(_idSeleccionado);
 
-            if (historial.Count == 0)
-            {
-                MessageBox.Show("Este huésped todavía no tiene estadías registradas", "Historial",
+                if (historial.Count == 0)
+                {
+                    MessageBox.Show("Este huésped todavía no tiene estadías registradas", "Historial",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                StringBuilder texto = new StringBuilder();
+                foreach (Estadia est in historial)
+                {
+                    string salida = est.FechaCheckOutReal.HasValue ? est.FechaCheckOutReal.Value.ToString("dd/MM/yyyy") : "En curso";
+                    texto.AppendLine("Reserva #" + est.ReservaId + " — Entrada: " + est.FechaCheckInReal.ToString("dd/MM/yyyy") +
+                                      " — Salida: " + salida + " — Estado: " + est.Estado);
+                }
+
+                MessageBox.Show(texto.ToString(), "Historial de estadías",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
 
-            StringBuilder texto = new StringBuilder();
-            foreach (Estadia est in historial)
-            {
-                string salida = est.FechaCheckOutReal.HasValue ? est.FechaCheckOutReal.Value.ToString("dd/MM/yyyy") : "En curso";
-                texto.AppendLine("Reserva #" + est.ReservaId + " — Entrada: " + est.FechaCheckInReal.ToString("dd/MM/yyyy") +
-                                  " — Salida: " + salida + " — Estado: " + est.Estado);
             }
+            
 
-            MessageBox.Show(texto.ToString(), "Historial de estadías",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            catch (SqlException)
+{
+                MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
+                    "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+{
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }  
 }

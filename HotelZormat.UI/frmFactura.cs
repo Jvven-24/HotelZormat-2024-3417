@@ -1,4 +1,5 @@
-﻿using HotelZormat.Modelo;
+﻿// Cedula : 402-1937000-0
+using HotelZormat.Modelo;
 using HotelZormat.Negocio.Servicios;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,8 @@ namespace HotelZormat.UI
             _reservaService = new ReservaService();
             _huespedService = new HuespedService();
             _habitacionService = new HabitacionService();
+
+            EstilosUI.AplicarEsquinasRedondeadas(pnlReceipt, 18);
         }
         public void CargarFactura(Factura factura)
         {
@@ -68,6 +71,11 @@ namespace HotelZormat.UI
                 lblItbis.Text = "ITBIS (18%): " + _factura.Itbis.ToString("N2");
                 lblPropina.Text = "Propina (10%): " + _factura.Propina.ToString("N2");
                 lblTotal.Text = "TOTAL: " + _factura.Total.ToString("N2");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (SqlException)
             {

@@ -29,10 +29,12 @@ namespace HotelZormat.Negocio.Servicios
             _facturaRepo = new FacturaRepository();
             _reservaService = new ReservaService();
         }
+        // TODO: ObtenerHistorialPorHuesped - Recibe huespedId (int), delega en el repositorio y retorna List<Estadia> del huésped
         public List<Estadia> ObtenerHistorialPorHuesped(int huespedId)
         {
             return _repo.ObtenerHistorialPorHuesped(huespedId);
         }
+        // TODO: HacerCheckIn - Recibe reservaId (int), valida que la reserva esté Confirmada y la habitación libre, crea la Estadia y pone la habitación en Ocupada
         public void HacerCheckIn(int reservaId)
         {
             Reserva reserva = _reservaRepo.BuscarPorId(reservaId);
@@ -75,6 +77,7 @@ namespace HotelZormat.Negocio.Servicios
             return _repo.BuscarPorId(id);
         }
 
+        // TODO: HacerCheckOut - Recibe estadiaId (int), calcula subtotal + ITBIS 18% + propina 10% (decimal), genera el NCF, guarda la Factura y pasa la habitación a Limpieza, retorna la Factura
         public Factura HacerCheckOut(int estadiaId)
         {
             Estadia estadia = _repo.BuscarPorId(estadiaId);

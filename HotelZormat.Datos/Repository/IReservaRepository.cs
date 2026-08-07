@@ -21,6 +21,7 @@ namespace HotelZormat.Datos.Repositorio
     }
     public class ReservaRepository : IReservaRepository
     {
+        // TODO: ObtenerTodas - Sin parámetros, ejecuta SELECT ordenado por FechaCheckIn con SqlDataReader, retorna List<Reserva>
         public List<Reserva> ObtenerTodas()
         {
             List<Reserva> reservas = new List<Reserva>();
@@ -41,6 +42,7 @@ namespace HotelZormat.Datos.Repositorio
             return reservas;
         }
 
+        // TODO: BuscarPorId - Recibe id (int), busca parametrizado y retorna la Reserva o null
         public Reserva BuscarPorId(int id)
         {
             Reserva r = null;
@@ -62,6 +64,7 @@ namespace HotelZormat.Datos.Repositorio
             return r;
         }
 
+        // TODO: ObtenerProximas - Recibe dias (int), filtra Estado='Confirmada' y FechaCheckIn entre hoy y hoy+dias (parametrizado), retorna List<Reserva>
         public List<Reserva> ObtenerProximas(int dias)
         {
             List<Reserva> reservas = new List<Reserva>();
@@ -85,6 +88,7 @@ namespace HotelZormat.Datos.Repositorio
             return reservas;
         }
 
+        // TODO: Insertar - Recibe una Reserva, ejecuta INSERT parametrizado contra la tabla Reservas
         public void Insertar(Reserva reserva)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
@@ -107,6 +111,7 @@ namespace HotelZormat.Datos.Repositorio
             }
         }
 
+        // TODO: Actualizar - Recibe una Reserva, ejecuta UPDATE parametrizado y lanza Exception si no afectó ninguna fila
         public void Actualizar(Reserva reserva)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
@@ -133,6 +138,7 @@ namespace HotelZormat.Datos.Repositorio
             }
         }
 
+        // TODO: CambiarEstado - Recibe id (int) y nuevoEstado (string: Pendiente/Confirmada/Cancelada), ejecuta UPDATE parametrizado
         public void CambiarEstado(int id, string nuevoEstado)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))

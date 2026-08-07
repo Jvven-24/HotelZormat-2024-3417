@@ -21,6 +21,7 @@ namespace HotelZormat.Datos.Repositorio
     }
     public class EstadiaRepository : IEstadiaRepository
     {
+        // TODO: Insertar - Recibe una Estadia, ejecuta INSERT parametrizado contra la tabla Estadias (check-in real)
         public void Insertar(Estadia estadia)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
@@ -36,6 +37,7 @@ namespace HotelZormat.Datos.Repositorio
             }
         }
 
+        // TODO: BuscarActivaPorHabitacion - Recibe numeroHabitacion (int), hace INNER JOIN Estadias/Reservas parametrizado, retorna la Estadia activa o null
         public Estadia BuscarActivaPorHabitacion(int numeroHabitacion)
         {
             Estadia e = null;
@@ -57,6 +59,7 @@ namespace HotelZormat.Datos.Repositorio
             return e;
         }
 
+        // TODO: Cerrar - Recibe id (int) y fechaSalida (DateTime), ejecuta UPDATE parametrizado (FechaCheckOutReal + Estado='Finalizada'); usado en el check-out
         public void Cerrar(int id, DateTime fechaSalida)
         {
             using (SqlConnection conexion = new SqlConnection(ConfiguracionBD.ObtenerConnectionString()))
@@ -71,6 +74,7 @@ namespace HotelZormat.Datos.Repositorio
             }
         }
 
+        // TODO: ObtenerHistorialPorHuesped - Recibe huespedId (int), hace INNER JOIN parametrizado y retorna List<Estadia> (para el botón Historial de Huéspedes)
         public List<Estadia> ObtenerHistorialPorHuesped(int huespedId)
         {
             List<Estadia> estadias = new List<Estadia>();
@@ -92,6 +96,7 @@ namespace HotelZormat.Datos.Repositorio
             return estadias;
         }
 
+        // TODO: ObtenerActivasDelDia - Sin parámetros, filtra Estado='Activa' y retorna List<Estadia>; usado por Dashboard/Reportes/Check-out
         public List<Estadia> ObtenerActivasDelDia()
         {
             List<Estadia> estadias = new List<Estadia>();
@@ -121,6 +126,7 @@ namespace HotelZormat.Datos.Repositorio
             return e;
         }
 
+        // TODO: BuscarPorId - Recibe id (int), busca parametrizado y retorna la Estadia o null
         public Estadia BuscarPorId(int id)
         {
             Estadia e = null;

@@ -1,4 +1,5 @@
-﻿using HotelZormat.Modelo;
+﻿// Cedula : 402-1937000-0
+using HotelZormat.Modelo;
 using HotelZormat.Negocio.Excepciones;
 using HotelZormat.Negocio.Servicios;
 using System;
@@ -28,8 +29,21 @@ namespace HotelZormat.UI
             _estadiaService = new EstadiaService();
             _reservaService = new ReservaService();
             _huespedService = new HuespedService();
+
+            pnlFiltros.Resize += EstilosUI.RedondearEsquinas;
+            pnlReservas.Resize += EstilosUI.RedondearEsquinas;
+            pnlEstadias.Resize += EstilosUI.RedondearEsquinas;
+            EstilosUI.AplicarEsquinasRedondeadas(pnlFiltros, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(pnlReservas, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(pnlEstadias, 14);
+
+            dgvReservasConfirmadas.CellFormatting += EstilosUI.SubrayarFilaSeleccionada;
+            dgvReservasConfirmadas.SelectionChanged += EstilosUI.RefrescarSeleccion;
+            dgvEstadiasActivas.CellFormatting += EstilosUI.SubrayarFilaSeleccionada;
+            dgvEstadiasActivas.SelectionChanged += EstilosUI.RefrescarSeleccion;
         }
 
+        // TODO: frmCheckInOut_Load - Sin parámetros, arma columnas de los dos grids y llama CargarGrids
         private void frmCheckInOut_Load(object sender, EventArgs e)
         {
             try
@@ -49,6 +63,11 @@ namespace HotelZormat.UI
                 CargarGrids();
 
             }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             catch (SqlException)
             {
                 MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
@@ -67,6 +86,7 @@ namespace HotelZormat.UI
             CargarGridEstadias();
         }
 
+        // TODO: CargarGridReservas - Sin parámetros, recorre ReservaService.ObtenerTodas con foreach y filtra las que están Confirmada
         private void CargarGridReservas()
         {
             dgvReservasConfirmadas.Rows.Clear();
@@ -82,6 +102,7 @@ namespace HotelZormat.UI
             }
 
         }
+        // TODO: CargarGridEstadias - Sin parámetros, recorre EstadiaService.ObtenerActivas con foreach y calcula las noches transcurridas
         private void CargarGridEstadias()
         {
             dgvEstadiasActivas.Rows.Clear();
@@ -118,6 +139,7 @@ namespace HotelZormat.UI
 
         }
 
+        // TODO: btnCheckIn_Click - Llama EstadiaService.HacerCheckIn; catch en orden FormatException, HabitacionOcupadaException, InvalidOperationException, ArgumentException, SqlException, Exception, con finally
         private void btnCheckIn_Click(object sender, EventArgs e)
         {
             if (_idReservaSeleccionada == 0)
@@ -132,8 +154,9 @@ namespace HotelZormat.UI
                 "Confirmar check-in", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (resultado != DialogResult.Yes) return;
-
+            
             btnCheckIn.Enabled = false;
+            Cursor.Current = Cursors.WaitCursor;
             try
             {
                 _estadiaService.HacerCheckIn(_idReservaSeleccionada);
@@ -141,6 +164,11 @@ namespace HotelZormat.UI
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 _idReservaSeleccionada = 0;
                 CargarGrids();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (HabitacionOcupadaException ex)
             {
@@ -165,11 +193,13 @@ namespace HotelZormat.UI
             }
             finally
             {
+                Cursor.Current = Cursors.Default;
                 btnCheckIn.Enabled = true;
             }
 
         }
 
+        // TODO: btnCheckOut_Click - Llama EstadiaService.HacerCheckOut y abre frmFactura con el resultado; catch FormatException, InvalidOperationException, ArgumentException, SqlException, Exception, con finally
         private void btnCheckOut_Click(object sender, EventArgs e)
         {
             if (_idEstadiaSeleccionada == 0)
@@ -195,6 +225,11 @@ namespace HotelZormat.UI
                 frmFactura factView = new frmFactura();
                 factView.CargarFactura(factura);
                 factView.ShowDialog();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (InvalidOperationException ex)
             {

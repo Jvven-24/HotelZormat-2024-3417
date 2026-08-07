@@ -27,16 +27,27 @@ namespace HotelZormat.UI
             txtPiso.KeyPress += ValidacionesTexto.SoloDigitos_KeyPress;
             txtCapacidad.KeyPress += ValidacionesTexto.SoloDigitos_KeyPress;
             txtTarifa.KeyPress += ValidacionesTexto.SoloDecimal_KeyPress;
+
+            pnlFiltros.Resize += EstilosUI.RedondearEsquinas;
+            pnlGridCard.Resize += EstilosUI.RedondearEsquinas;
+            pnlCaptura.Resize += EstilosUI.RedondearEsquinas;
+            EstilosUI.AplicarEsquinasRedondeadas(pnlFiltros, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(pnlGridCard, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(pnlCaptura, 14);
+
+            dgvHabitaciones.CellFormatting += EstilosUI.SubrayarFilaSeleccionada;
+            dgvHabitaciones.SelectionChanged += EstilosUI.RefrescarSeleccion;
         }
-        private Color ObtenerColorPorEstado(string estado)       
+        // TODO: ObtenerColorPorEstado - Recibe estado (string), switch que retorna el Color para pintar según Disponible/Ocupada/Reservada/Limpieza
+        private Color ObtenerColorPorEstado(string estado)
         {
             switch (estado)
             {
-                case "Disponible": return Color.Green;
-                case "Ocupada": return Color.Red;
-                case "Reservada": return Color.Orange;
-                case "Limpieza": return Color.RoyalBlue;
-                default: return Color.Gray;
+                case "Disponible": return Color.FromArgb(47, 143, 99);
+                case "Ocupada": return Color.FromArgb(193, 68, 60);
+                case "Reservada": return Color.FromArgb(201, 146, 47);
+                case "Limpieza": return Color.FromArgb(79, 126, 168);
+                default: return Color.FromArgb(121, 112, 93);
             }
         }
 
@@ -45,6 +56,7 @@ namespace HotelZormat.UI
 
         }
 
+        // TODO: frmGestionHabitaciones_Load - Sin parámetros, arma columnas del grid y llena cboTipo/cboEstado/cboFiltroEstado con foreach, luego carga el grid
         private void frmGestionHabitaciones_Load(object sender, EventArgs e)
         {
             try
@@ -86,6 +98,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: CargarGrid - Recibe List<Habitacion>, limpia el grid y lo llena con foreach (una fila por habitación)
         private void CargarGrid(List<Habitacion> lista)
         {
             dgvHabitaciones.Rows.Clear();                                 
@@ -95,6 +108,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: btnFiltrar_Click - Lee cboFiltroPiso/cboFiltroEstado, llama HabitacionService.ObtenerPorFiltro y recarga el grid; catch de SqlException y Exception
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
             try
@@ -138,6 +152,7 @@ namespace HotelZormat.UI
             lblEstado.ForeColor = ObtenerColorPorEstado(estado);
         }
 
+        // TODO: btnBuscar_Click - Recibe el número desde txtNumero, busca con HabitacionService.BuscarPorNumero y llena los campos; catch FormatException, SqlException, Exception
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             try
@@ -163,8 +178,18 @@ namespace HotelZormat.UI
                 MessageBox.Show("Ingresa un número de habitación válido", "Aviso",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            catch (SqlException)
+            {
+                MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
+                    "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        // TODO: btnGuardar_Click - Arma una Habitacion desde los campos y llama HabitacionService.Guardar; catch en orden HabitacionOcupadaException, SqlException, FormatException, Exception, con finally
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             bool tipoValido = ValidacionesTexto.ValidarComboRequerido(cboTipo, errorProvider1, "Selecciona un tipo de habitación");
@@ -219,6 +244,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: btnEliminar_Click - Pide confirmación (YesNo) y llama HabitacionService.Eliminar(numero, EsAdministrador); catch UnauthorizedAccessException, HabitacionOcupadaException, SqlException, FormatException, Exception
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             try
@@ -281,6 +307,7 @@ namespace HotelZormat.UI
             lblEstado.Text = "estado";
         }
 
+        // TODO: RecargarFiltroPiso - Sin parámetros, recorre las habitaciones con foreach y arma la lista de pisos únicos para cboFiltroPiso
         private void RecargarFiltroPiso()
         {
             cboFiltroPiso.Items.Clear();

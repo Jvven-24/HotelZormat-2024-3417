@@ -1,4 +1,5 @@
-﻿using HotelZormat.Modelo;
+﻿// Cedula : 402-1937000-0
+using HotelZormat.Modelo;
 using HotelZormat.Negocio.Servicios;
 using System;
 using System.Collections.Generic;
@@ -23,8 +24,17 @@ namespace HotelZormat.UI
             InitializeComponent();
             _bitacoraService = new BitacoraService();
             _usuarioService = new UsuarioService();
+
+            pnlFiltros.Resize += EstilosUI.RedondearEsquinas;
+            pnlGridCard.Resize += EstilosUI.RedondearEsquinas;
+            EstilosUI.AplicarEsquinasRedondeadas(pnlFiltros, 14);
+            EstilosUI.AplicarEsquinasRedondeadas(pnlGridCard, 14);
+
+            dgvBitacora.CellFormatting += EstilosUI.SubrayarFilaSeleccionada;
+            dgvBitacora.SelectionChanged += EstilosUI.RefrescarSeleccion;
         }
 
+        // TODO: frmBitacora_Load - Sin parámetros, arma columnas del grid, llena cboFiltroAccion con foreach y carga todos los registros (solo Administrador entra aquí, ver FrmPrincipal_Load)
         private void frmBitacora_Load(object sender, EventArgs e)
         {
             try
@@ -44,6 +54,11 @@ namespace HotelZormat.UI
 
                 CargarGrid(_bitacoraService.ObtenerTodas());
             }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             catch (SqlException)
             {
                 MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
@@ -55,6 +70,7 @@ namespace HotelZormat.UI
             }
 
         }
+        // TODO: CargarGrid - Recibe List<RegistroBitacora>, limpia el grid y lo llena con foreach (busca el usuario por cada registro)
         private void CargarGrid(List<RegistroBitacora> registros)
         {
             dgvBitacora.Rows.Clear();
@@ -67,6 +83,7 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: btnFiltrar_Click - Llama BitacoraService.ObtenerPorAccion con lo elegido en cboFiltroAccion; catch FormatException, SqlException, Exception
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
             if (cboFiltroAccion.SelectedItem == null)
@@ -80,6 +97,11 @@ namespace HotelZormat.UI
             {
                 CargarGrid(_bitacoraService.ObtenerPorAccion(cboFiltroAccion.SelectedItem.ToString()));
             }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             catch (SqlException)
             {
                 MessageBox.Show("No se pudo conectar a la base de datos. Verifique que SQL Server esté corriendo.",
@@ -91,12 +113,18 @@ namespace HotelZormat.UI
             }
         }
 
+        // TODO: btnVerTodas_Click - Limpia el filtro y llama BitacoraService.ObtenerTodas; catch FormatException, SqlException, Exception
         private void btnVerTodas_Click(object sender, EventArgs e)
         {
             cboFiltroAccion.SelectedIndex = -1;
             try
             {
                 CargarGrid(_bitacoraService.ObtenerTodas());
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Verifique los datos ingresados", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (SqlException)
             {

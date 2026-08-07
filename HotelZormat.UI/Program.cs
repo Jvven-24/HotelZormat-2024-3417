@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Cedula : 402-1937000-0
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace HotelZormat.UI
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        // TODO: Main - Punto de entrada de la aplicación, habilita estilos visuales y arranca con frmLogin
         [STAThread]
         static void Main()
         {
